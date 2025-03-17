@@ -1,0 +1,153 @@
+{"level":"info","message":"Pinged the server every 5 minutes","service":"Omorix-api","timestamp":"2025-03-16 16:10:00"}
+{"level":"info","message":"Status: 200","service":"Omorix-api","timestamp":"2025-03-16 16:10:01"}
+{"level":"info","message":"Pinged the server every 5 minutes","service":"Omorix-api","timestamp":"2025-03-16 16:15:00"}
+{"level":"info","message":"Status: 200","service":"Omorix-api","timestamp":"2025-03-16 16:15:00"}
+{"level":"info","message":"Pinged the server every 5 minutes","service":"Omorix-api","timestamp":"2025-03-16 16:16:00"}
+{"level":"info","message":"Status: 200","service":"Omorix-api","timestamp":"2025-03-16 16:16:02"}
+{"level":"info","message":"Pinged the server every 1 minutes","service":"Omorix-api","timestamp":"2025-03-16 16:17:00"}
+{"level":"info","message":"Status: 200","service":"Omorix-api","timestamp":"2025-03-16 16:17:00"}
+{"level":"info","message":"Pinged the server every 1 minutes","service":"Omorix-api","timestamp":"2025-03-16 16:18:00"}
+{"level":"info","message":"Status: 200","service":"Omorix-api","timestamp":"2025-03-16 16:18:01"}
+{"level":"info","message":"Pinged the server every 1 minutes","service":"Omorix-api","timestamp":"2025-03-16 16:19:00"}
+{"level":"info","message":"Status: 200","service":"Omorix-api","timestamp":"2025-03-16 16:19:01"}
+{"level":"info","message":"Pinged the server every 1 minutes","service":"Omorix-api","timestamp":"2025-03-16 16:20:00"}
+{"level":"info","message":"Status: 200","service":"Omorix-api","timestamp":"2025-03-16 16:20:01"}
+{"level":"info","message":"Pinged the server every 1 minutes","service":"Omorix-api","timestamp":"2025-03-16 16:21:00"}
+{"level":"info","message":"Status: 200","service":"Omorix-api","timestamp":"2025-03-16 16:21:00"}
+{"level":"info","message":"Pinged the server every 1 minutes","service":"Omorix-api","timestamp":"2025-03-16 16:22:00"}
+{"level":"info","message":"Status: 200","service":"Omorix-api","timestamp":"2025-03-16 16:22:01"}
+{"level":"info","message":"Pinged the server every 1 minutes","service":"Omorix-api","timestamp":"2025-03-16 16:23:00"}
+{"level":"info","message":"Status: 200","service":"Omorix-api","timestamp":"2025-03-16 16:23:01"}
+{"level":"info","message":"Pinged the server every 1 minutes","service":"Omorix-api","timestamp":"2025-03-16 16:24:00"}
+{"level":"info","message":"Status: 200","service":"Omorix-api","timestamp":"2025-03-16 16:24:01"}
+{"level":"info","message":"Pinged the server every 5 minutes","service":"Omorix-api","timestamp":"2025-03-16 16:25:00"}
+{"level":"info","message":"Status: 200","service":"Omorix-api","timestamp":"2025-03-16 16:25:00"}
+{"level":"info","message":"Pinged the server every 5 minutes","service":"Omorix-api","timestamp":"2025-03-16 16:30:00"}
+{"level":"info","message":"Status: 200","service":"Omorix-api","timestamp":"2025-03-16 16:30:01"}
+{"level":"info","message":"Pinged the server every 5 minutes","service":"Omorix-api","timestamp":"2025-03-16 16:35:00"}
+{"level":"info","message":"Status: 502","service":"Omorix-api","timestamp":"2025-03-16 16:35:01"}
+{"level":"info","message":"Endpoint /api/extract-text status: 404","service":"Omorix-api","timestamp":"2025-03-16 16:56:22"}
+{"level":"info","message":"Endpoint /api/generate-summary status: 404","service":"Omorix-api","timestamp":"2025-03-16 16:56:22"}
+{"level":"info","message":"Endpoint / status: 404","service":"Omorix-api","timestamp":"2025-03-16 16:56:22"}
+{"level":"info","message":"Endpoint / status: 404","service":"Omorix-api","timestamp":"2025-03-16 16:58:34"}
+{"level":"info","message":"Endpoint /api/extract-text status: 404","service":"Omorix-api","timestamp":"2025-03-16 16:58:34"}
+{"level":"info","message":"Endpoint /api/generate-summary status: 404","service":"Omorix-api","timestamp":"2025-03-16 16:58:35"}
+{"level":"info","message":"Pinged the server every 1 minutes","service":"Omorix-api","timestamp":"2025-03-16 16:59:00"}
+{"level":"info","message":"Keep-alive ping status: 404","service":"Omorix-api","timestamp":"2025-03-16 16:59:00"}
+{"level":"info","message":"Pinged the server every 1 minutes","service":"Omorix-api","timestamp":"2025-03-16 17:00:00"}
+{"level":"info","message":"Keep-alive ping status: 404","service":"Omorix-api","timestamp":"2025-03-16 17:00:01"}
+{"level":"info","message":"Pinged the server every 1 minutes","service":"Omorix-api","timestamp":"2025-03-16 17:01:00"}
+{"level":"info","message":"Keep-alive ping status: 404","service":"Omorix-api","timestamp":"2025-03-16 17:01:00"}
+{"level":"info","message":"Pinged the server every 1 minutes","service":"Omorix-api","timestamp":"2025-03-16 17:02:00"}
+{"level":"info","message":"Keep-alive ping status: 404","service":"Omorix-api","timestamp":"2025-03-16 17:02:01"}
+{"level":"info","message":"Pinged the server every 1 minutes","service":"Omorix-api","timestamp":"2025-03-16 17:03:00"}
+{"level":"info","message":"Keep-alive ping status: 404","service":"Omorix-api","timestamp":"2025-03-16 17:03:01"}
+{"level":"info","message":"Pinged the server every 1 minutes","service":"Omorix-api","timestamp":"2025-03-16 17:04:00"}
+{"level":"info","message":"Keep-alive ping status: 404","service":"Omorix-api","timestamp":"2025-03-16 17:04:01"}
+{"level":"info","message":"Pinged the server every 1 minutes","service":"Omorix-api","timestamp":"2025-03-16 17:05:00"}
+{"level":"info","message":"Keep-alive ping status: 404","service":"Omorix-api","timestamp":"2025-03-16 17:05:01"}
+{"level":"info","message":"Pinged the server every 1 minutes","service":"Omorix-api","timestamp":"2025-03-16 17:06:00"}
+{"level":"info","message":"Keep-alive ping status: 404","service":"Omorix-api","timestamp":"2025-03-16 17:06:00"}
+{"level":"info","message":"Endpoint / status: 404","service":"Omorix-api","timestamp":"2025-03-16 17:17:11"}
+{"level":"info","message":"Endpoint /api/extract-text status: 404","service":"Omorix-api","timestamp":"2025-03-16 17:17:11"}
+{"level":"info","message":"Endpoint /api/generate-summary status: 404","service":"Omorix-api","timestamp":"2025-03-16 17:17:11"}
+{"level":"info","message":"Pinged the server every 1 minutes","service":"Omorix-api","timestamp":"2025-03-16 17:18:00"}
+{"level":"info","message":"Keep-alive ping status: 404","service":"Omorix-api","timestamp":"2025-03-16 17:18:01"}
+{"level":"info","message":"Pinged the server every 1 minutes","service":"Omorix-api","timestamp":"2025-03-16 17:19:00"}
+{"level":"info","message":"Keep-alive ping status: 404","service":"Omorix-api","timestamp":"2025-03-16 17:19:00"}
+{"level":"info","message":"Pinged the server every 1 minutes","service":"Omorix-api","timestamp":"2025-03-16 17:20:00"}
+{"level":"info","message":"Keep-alive ping status: 404","service":"Omorix-api","timestamp":"2025-03-16 17:20:01"}
+{"level":"info","message":"Pinged the server every 1 minutes","service":"Omorix-api","timestamp":"2025-03-16 17:21:00"}
+{"level":"info","message":"Keep-alive ping status: 404","service":"Omorix-api","timestamp":"2025-03-16 17:21:01"}
+{"level":"info","message":"Pinged the server every 1 minutes","service":"Omorix-api","timestamp":"2025-03-16 17:22:00"}
+{"level":"info","message":"Keep-alive ping status: 404","service":"Omorix-api","timestamp":"2025-03-16 17:22:01"}
+{"level":"info","message":"Pinged the server every 1 minutes","service":"Omorix-api","timestamp":"2025-03-16 17:23:00"}
+{"level":"info","message":"Keep-alive ping status: 404","service":"Omorix-api","timestamp":"2025-03-16 17:23:01"}
+{"level":"info","message":"Endpoint / status: 404","service":"Omorix-api","timestamp":"2025-03-16 17:23:40"}
+{"level":"info","message":"Endpoint /api/extract-text status: 404","service":"Omorix-api","timestamp":"2025-03-16 17:23:40"}
+{"level":"info","message":"Endpoint /api/generate-summary status: 404","service":"Omorix-api","timestamp":"2025-03-16 17:23:41"}
+{"level":"info","message":"Pinged the server every 1 minutes","service":"Omorix-api","timestamp":"2025-03-16 17:24:00"}
+{"level":"info","message":"Keep-alive ping status: 404","service":"Omorix-api","timestamp":"2025-03-16 17:24:01"}
+{"level":"info","message":"Pinged the server every 1 minutes","service":"Omorix-api","timestamp":"2025-03-16 17:25:00"}
+{"level":"info","message":"Keep-alive ping status: 404","service":"Omorix-api","timestamp":"2025-03-16 17:25:01"}
+{"level":"info","message":"Pinged the server every 1 minutes","service":"Omorix-api","timestamp":"2025-03-16 17:26:00"}
+{"level":"info","message":"Keep-alive ping status: 404","service":"Omorix-api","timestamp":"2025-03-16 17:26:01"}
+{"level":"info","message":"Pinged the server every 1 minutes","service":"Omorix-api","timestamp":"2025-03-16 17:27:00"}
+{"level":"info","message":"Keep-alive ping status: 404","service":"Omorix-api","timestamp":"2025-03-16 17:27:01"}
+{"level":"info","message":"Endpoint /api/extract-text status: 404","service":"Omorix-api","timestamp":"2025-03-16 17:27:47"}
+{"level":"info","message":"Endpoint / status: 404","service":"Omorix-api","timestamp":"2025-03-16 17:27:47"}
+{"level":"info","message":"Endpoint /api/generate-summary status: 404","service":"Omorix-api","timestamp":"2025-03-16 17:27:47"}
+{"level":"info","message":"Endpoint /api/generate-summary status: 404","service":"Omorix-api","timestamp":"2025-03-16 17:27:53"}
+{"level":"info","message":"Endpoint / status: 404","service":"Omorix-api","timestamp":"2025-03-16 17:27:53"}
+{"level":"info","message":"Endpoint /api/extract-text status: 404","service":"Omorix-api","timestamp":"2025-03-16 17:27:54"}
+{"level":"info","message":"Pinged the server every 1 minutes","service":"Omorix-api","timestamp":"2025-03-16 17:28:00"}
+{"level":"info","message":"Keep-alive ping status: 404","service":"Omorix-api","timestamp":"2025-03-16 17:28:01"}
+{"level":"info","message":"Pinged the server every 1 minutes","service":"Omorix-api","timestamp":"2025-03-16 17:29:00"}
+{"level":"info","message":"Keep-alive ping status: 404","service":"Omorix-api","timestamp":"2025-03-16 17:29:01"}
+{"level":"info","message":"Pinged the server every 1 minutes","service":"Omorix-api","timestamp":"2025-03-16 17:30:00"}
+{"level":"info","message":"Keep-alive ping status: 404","service":"Omorix-api","timestamp":"2025-03-16 17:30:01"}
+{"level":"info","message":"Endpoint /api/generate-summary status: 404","service":"Omorix-api","timestamp":"2025-03-16 17:30:22"}
+{"level":"info","message":"Endpoint / status: 404","service":"Omorix-api","timestamp":"2025-03-16 17:30:22"}
+{"level":"info","message":"Endpoint /api/extract-text status: 404","service":"Omorix-api","timestamp":"2025-03-16 17:30:22"}
+{"level":"info","message":"Pinged the server every 1 minutes","service":"Omorix-api","timestamp":"2025-03-16 17:31:00"}
+{"level":"info","message":"Keep-alive ping status: 404","service":"Omorix-api","timestamp":"2025-03-16 17:31:01"}
+{"level":"info","message":"Pinged the server every 1 minutes","service":"Omorix-api","timestamp":"2025-03-16 17:32:00"}
+{"level":"info","message":"Keep-alive ping status: 404","service":"Omorix-api","timestamp":"2025-03-16 17:32:01"}
+{"level":"info","message":"Pinged the server every 1 minutes","service":"Omorix-api","timestamp":"2025-03-16 17:33:00"}
+{"level":"info","message":"Keep-alive ping status: 404","service":"Omorix-api","timestamp":"2025-03-16 17:33:01"}
+{"level":"info","message":"Pinged the server every 1 minutes","service":"Omorix-api","timestamp":"2025-03-16 17:34:00"}
+{"level":"info","message":"Keep-alive ping status: 404","service":"Omorix-api","timestamp":"2025-03-16 17:34:01"}
+{"level":"info","message":"Pinged the server every 1 minutes","service":"Omorix-api","timestamp":"2025-03-16 17:35:00"}
+{"level":"info","message":"Keep-alive ping status: 404","service":"Omorix-api","timestamp":"2025-03-16 17:35:02"}
+{"level":"info","message":"Pinged the server every 1 minutes","service":"Omorix-api","timestamp":"2025-03-16 17:36:00"}
+{"level":"info","message":"Keep-alive ping status: 404","service":"Omorix-api","timestamp":"2025-03-16 17:36:01"}
+{"level":"info","message":"Pinged the server every 1 minutes","service":"Omorix-api","timestamp":"2025-03-16 17:37:00"}
+{"level":"info","message":"Keep-alive ping status: 404","service":"Omorix-api","timestamp":"2025-03-16 17:37:01"}
+{"level":"info","message":"Pinged the server every 1 minutes","service":"Omorix-api","timestamp":"2025-03-16 17:38:00"}
+{"level":"info","message":"Keep-alive ping status: 404","service":"Omorix-api","timestamp":"2025-03-16 17:38:01"}
+{"level":"info","message":"Pinged the server every 1 minutes","service":"Omorix-api","timestamp":"2025-03-16 17:39:00"}
+{"level":"info","message":"Keep-alive ping status: 404","service":"Omorix-api","timestamp":"2025-03-16 17:39:00"}
+{"level":"info","message":"Pinged the server every 1 minutes","service":"Omorix-api","timestamp":"2025-03-16 17:40:00"}
+{"level":"info","message":"Keep-alive ping status: 404","service":"Omorix-api","timestamp":"2025-03-16 17:40:01"}
+{"level":"info","message":"Pinged the server every 1 minutes","service":"Omorix-api","timestamp":"2025-03-16 17:41:00"}
+{"level":"info","message":"Keep-alive ping status: 404","service":"Omorix-api","timestamp":"2025-03-16 17:41:00"}
+{"level":"info","message":"Pinged the server every 1 minutes","service":"Omorix-api","timestamp":"2025-03-16 17:42:00"}
+{"level":"info","message":"Keep-alive ping status: 404","service":"Omorix-api","timestamp":"2025-03-16 17:42:01"}
+{"level":"info","message":"Pinged the server every 1 minutes","service":"Omorix-api","timestamp":"2025-03-16 17:43:00"}
+{"level":"info","message":"Keep-alive ping status: 404","service":"Omorix-api","timestamp":"2025-03-16 17:43:00"}
+{"level":"info","message":"Pinged the server every 1 minutes","service":"Omorix-api","timestamp":"2025-03-16 17:44:00"}
+{"level":"info","message":"Keep-alive ping status: 404","service":"Omorix-api","timestamp":"2025-03-16 17:44:01"}
+{"level":"info","message":"Pinged the server every 1 minutes","service":"Omorix-api","timestamp":"2025-03-16 17:45:00"}
+{"level":"info","message":"Keep-alive ping status: 404","service":"Omorix-api","timestamp":"2025-03-16 17:45:01"}
+{"level":"info","message":"Pinged the server every 1 minutes","service":"Omorix-api","timestamp":"2025-03-16 17:46:00"}
+{"level":"info","message":"Keep-alive ping status: 404","service":"Omorix-api","timestamp":"2025-03-16 17:46:01"}
+{"level":"info","message":"Pinged the server every 1 minutes","service":"Omorix-api","timestamp":"2025-03-16 17:47:00"}
+{"level":"info","message":"Keep-alive ping status: 404","service":"Omorix-api","timestamp":"2025-03-16 17:47:01"}
+{"level":"info","message":"Pinged the server every 1 minutes","service":"Omorix-api","timestamp":"2025-03-16 17:48:00"}
+{"level":"info","message":"Keep-alive ping status: 404","service":"Omorix-api","timestamp":"2025-03-16 17:48:01"}
+{"level":"info","message":"Pinged the server every 1 minutes","service":"Omorix-api","timestamp":"2025-03-16 17:49:00"}
+{"level":"info","message":"Keep-alive ping status: 404","service":"Omorix-api","timestamp":"2025-03-16 17:49:01"}
+{"level":"info","message":"Pinged the server every 1 minutes","service":"Omorix-api","timestamp":"2025-03-16 17:50:00"}
+{"level":"info","message":"Keep-alive ping status: 404","service":"Omorix-api","timestamp":"2025-03-16 17:50:01"}
+{"level":"info","message":"Pinged the server every 1 minutes","service":"Omorix-api","timestamp":"2025-03-16 17:51:00"}
+{"level":"info","message":"Keep-alive ping status: 404","service":"Omorix-api","timestamp":"2025-03-16 17:51:01"}
+{"level":"info","message":"Endpoint /api/generate-summary status: 500, response: {\"error\":\"Failed to generate summary\"}","service":"Omorix-api","timestamp":"2025-03-16 17:53:07"}
+{"level":"info","message":"Endpoint /api/extract-text status: 500, response: {\"error\":\"Failed to extract Product Details\"}","service":"Omorix-api","timestamp":"2025-03-16 17:53:07"}
+{"level":"info","message":"Pinged the server every 1 minute","service":"Omorix-api","timestamp":"2025-03-16 17:54:00"}
+{"level":"info","message":"Keep-alive ping status: 500","service":"Omorix-api","timestamp":"2025-03-16 17:54:01"}
+{"level":"info","message":"Pinged the server every 1 minute","service":"Omorix-api","timestamp":"2025-03-16 17:55:00"}
+{"level":"info","message":"Keep-alive ping status: 500","service":"Omorix-api","timestamp":"2025-03-16 17:55:01"}
+{"level":"info","message":"Endpoint /api/generate-summary status: 500, response: {\"error\":\"Failed to generate summary\"}","service":"Omorix-api","timestamp":"2025-03-16 18:19:55"}
+{"level":"info","message":"Endpoint /api/extract-text status: 500, response: {\"error\":\"Failed to extract Product Details\"}","service":"Omorix-api","timestamp":"2025-03-16 18:19:55"}
+{"level":"info","message":"Pinged the server every 1 minute (GET)","service":"Omorix-api","timestamp":"2025-03-16 18:20:00"}
+{"level":"info","message":"Pinged the AI summary endpoint every 5 minutes (POST)","service":"Omorix-api","timestamp":"2025-03-16 18:20:00"}
+{"level":"info","message":"Keep-alive (GET) ping status: 404","service":"Omorix-api","timestamp":"2025-03-16 18:20:00"}
+{"level":"info","message":"Keep-alive ping status: 500","service":"Omorix-api","timestamp":"2025-03-16 18:20:01"}
+{"level":"info","message":"Pinged the server every 1 minute (GET)","service":"Omorix-api","timestamp":"2025-03-16 18:21:00"}
+{"level":"info","message":"Keep-alive (GET) ping status: 404","service":"Omorix-api","timestamp":"2025-03-16 18:21:01"}
+{"level":"info","message":"Pinged the server every 1 minute (GET)","service":"Omorix-api","timestamp":"2025-03-16 18:22:00"}
+{"level":"info","message":"Keep-alive (GET) ping status: 404","service":"Omorix-api","timestamp":"2025-03-16 18:22:01"}
+{"level":"info","message":"Pinged the server every 1 minute (GET)","service":"Omorix-api","timestamp":"2025-03-16 18:23:00"}
+{"level":"info","message":"Keep-alive (GET) ping status: 404","service":"Omorix-api","timestamp":"2025-03-16 18:23:01"}
+{"level":"info","message":"Pinged the server every 1 minute (GET)","service":"Omorix-api","timestamp":"2025-03-16 18:24:00"}
+{"level":"info","message":"Keep-alive (GET) ping status: 404","service":"Omorix-api","timestamp":"2025-03-16 18:24:01"}
