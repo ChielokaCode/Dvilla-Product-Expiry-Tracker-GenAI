@@ -8,6 +8,7 @@ import ChatbotFloatingButton from "./ChatbotFloatingButton";
 import { Notification } from "@progress/kendo-react-notification";
 import { editProduct } from "./utils/generateProducts";
 import { useParams } from "react-router-dom";
+import { Button } from "@progress/kendo-react-buttons";
 
 const EditProduct = () => {
   const { id } = useParams(); // Get the product ID from URL
@@ -278,12 +279,13 @@ const EditProduct = () => {
 
             {/* Submit Button */}
             <div>
-              <button
+              <Button
                 type="submit"
+                themeColor={"info"}
                 className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
               >
                 Edit Product
-              </button>
+              </Button>
             </div>
           </form>
         </div>

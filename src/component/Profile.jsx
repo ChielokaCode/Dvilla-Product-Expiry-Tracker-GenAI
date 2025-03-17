@@ -127,7 +127,7 @@ const Profile = () => {
           onClick={handleSave}
           size="large"
           rounded="medium"
-          themeColor={"primary"}
+          themeColor={"info"}
         >
           Save
         </Button>

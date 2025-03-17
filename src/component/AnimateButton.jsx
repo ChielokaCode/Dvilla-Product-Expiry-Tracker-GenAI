@@ -1,3 +1,4 @@
+import { Button } from "@progress/kendo-react-buttons";
 import React from "react";
 
 const AnimateButton = ({
@@ -12,12 +13,13 @@ const AnimateButton = ({
     <>
       {/* Move button to the top-right */}
       <div className="absolute top-4 right-4 z-50">
-        <button
+        <Button
           onClick={() => setShow(!show)}
+          themeColor={"info"}
           className="px-6 py-3 bg-blue-500 text-white rounded-lg shadow-md hover:bg-blue-600 transition"
         >
           {show ? `Animate Hide ${text}` : `Animate Show ${text}`}
-        </button>
+        </Button>
       </div>
 
       {/* Slide Animation */}

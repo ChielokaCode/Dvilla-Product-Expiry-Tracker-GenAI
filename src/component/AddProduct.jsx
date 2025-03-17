@@ -7,6 +7,7 @@ import ChatbotFloatingButton from "./ChatbotFloatingButton";
 import TextBox from "./TextBox";
 import { addProduct } from "./utils/generateProducts";
 import { Notification } from "@progress/kendo-react-notification";
+import { Button } from "@progress/kendo-react-buttons";
 
 const AddProduct = () => {
   const [productName, setProductName] = useState("");
@@ -216,12 +217,13 @@ const AddProduct = () => {
 
             {/* Submit Button */}
             <div>
-              <button
+              <Button
                 type="submit"
+                themeColor={"info"}
                 className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
               >
                 Add Product
-              </button>
+              </Button>
             </div>
           </form>
         </div>

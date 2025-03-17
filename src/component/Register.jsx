@@ -6,6 +6,7 @@ import { DropDownList } from "@progress/kendo-react-dropdowns";
 import { DatePicker } from "@progress/kendo-react-dateinputs";
 import { useNavigate } from "react-router-dom";
 import { Notification } from "@progress/kendo-react-notification";
+import { Button } from "@progress/kendo-react-buttons";
 
 const Register = () => {
   const [firstName, setFirstName] = useState("");
@@ -259,12 +260,13 @@ const Register = () => {
 
               {/* Submit Button */}
               <div>
-                <button
+                <Button
                   type="submit"
+                  themeColor={"info"}
                   className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                 >
                   Register
-                </button>
+                </Button>
               </div>
 
               {/* Signup Link */}

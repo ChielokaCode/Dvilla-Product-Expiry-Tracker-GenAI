@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import TextBox from "./TextBox";
 import generateProducts from "./utils/generateProducts";
+import { Button } from "@progress/kendo-react-buttons";
 
 const ChatBot = () => {
   const [input, setInput] = useState("");
@@ -44,13 +45,14 @@ const ChatBot = () => {
         placeholder="Ask AI something..."
       />
 
-      <button
+      <Button
         onClick={handleAskAI}
+        themeColor={"info"}
         className="bg-blue-500 text-white px-4 py-2 rounded mt-2"
         disabled={loading}
       >
         {loading ? "Thinking..." : "Ask AI"}
-      </button>
+      </Button>
 
       {response && (
         <div className="mt-4 p-3 bg-gray-100 border rounded whitespace-pre-line">

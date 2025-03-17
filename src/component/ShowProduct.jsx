@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import generateProducts, { deleteProduct } from "./utils/generateProducts";
 import ChatbotFloatingButton from "./ChatbotFloatingButton";
 import { Notification } from "@progress/kendo-react-notification";
+import { Button } from "@progress/kendo-react-buttons";
 
 const ShowProduct = () => {
   const [showDeleteModal, setShowDeleteModal] = useState(false);
@@ -101,18 +102,21 @@ const ShowProduct = () => {
                   <td className="border px-4 py-2">{product.modifiedBy}</td>
                   <td className="border px-4 py-2">{product.modifiedDate}</td>
                   <td className="border px-4 py-2 flex space-x-2">
-                    <Link
-                      to={`/dashboard/editProduct/${product.id}`}
-                      className="bg-blue-500 text-white px-3 py-1 rounded-md hover:bg-blue-600"
-                    >
-                      Edit
-                    </Link>
-                    <button
+                    <Button themeColor={"info"}>
+                      <Link
+                        to={`/dashboard/editProduct/${product.id}`}
+                        className=" text-white px-3 py-1 rounded-md hover:bg-blue-600"
+                      >
+                        Edit
+                      </Link>
+                    </Button>
+                    <Button
                       onClick={() => handleDelete(product.id)}
+                      themeColor={"error"}
                       className="bg-red-500 text-white px-3 py-1 rounded-md hover:bg-red-600"
                     >
                       Delete
-                    </button>
+                    </Button>
                   </td>
                 </tr>
               ))}

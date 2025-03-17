@@ -4,6 +4,7 @@ import { Label } from "@progress/kendo-react-labels";
 import { Input } from "@progress/kendo-react-inputs";
 import { useNavigate } from "react-router-dom";
 import { Notification } from "@progress/kendo-react-notification";
+import { Button } from "@progress/kendo-react-buttons";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -114,12 +115,13 @@ const Login = () => {
             </div>
 
             <div>
-              <button
+              <Button
                 type="submit"
+                themeColor={"info"}
                 className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm/6 font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
               >
                 Sign in
-              </button>
+              </Button>
             </div>
           </form>
 
