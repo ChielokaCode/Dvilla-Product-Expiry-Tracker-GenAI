@@ -12,7 +12,7 @@ const generateProducts = () => {
         productQuantity: 9,
         productBatchNo: "BATCH-202401",
         productManufactureDate: "2024-01-05",
-        productExpirationDate: "2025-01-05",
+        productExpirationDate: "2025-04-05",
         productShelfAddedDate: "2024-02-10",
         createdDate: "2024-03-01",
         createdBy: "Admin 1",
@@ -27,7 +27,7 @@ const generateProducts = () => {
         productQuantity: 15,
         productBatchNo: "BATCH-202402",
         productManufactureDate: "2024-01-10",
-        productExpirationDate: "2026-01-10",
+        productExpirationDate: "2025-03-10",
         productShelfAddedDate: "2024-02-15",
         createdDate: "2024-03-05",
         createdBy: "Admin 2",
@@ -42,7 +42,7 @@ const generateProducts = () => {
         productQuantity: 1,
         productBatchNo: "BATCH-202403",
         productManufactureDate: "2024-01-12",
-        productExpirationDate: "2026-07-12",
+        productExpirationDate: "2025-05-12",
         productShelfAddedDate: "2024-02-18",
         createdDate: "2024-03-07",
         createdBy: "Admin 1",
@@ -109,6 +109,7 @@ export const editProduct = (updatedProduct) => {
 
   if (productIndex !== -1) {
     products[productIndex] = { ...products[productIndex], ...updatedProduct }; // Merge changes
+    products[productIndex].modifiedBy = "Admin";
     products[productIndex].modifiedDate = new Date()
       .toISOString()
       .split("T")[0]; // Update modified date

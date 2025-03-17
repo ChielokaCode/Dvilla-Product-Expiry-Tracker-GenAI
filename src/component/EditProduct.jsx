@@ -4,7 +4,6 @@ import { DatePicker } from "@progress/kendo-react-dateinputs";
 import { Label } from "@progress/kendo-react-labels";
 import { Input } from "@progress/kendo-react-inputs";
 import { DropDownList } from "@progress/kendo-react-dropdowns";
-import ChatbotFloatingButton from "./ChatbotFloatingButton";
 import { Notification } from "@progress/kendo-react-notification";
 import { editProduct } from "./utils/generateProducts";
 import { useParams } from "react-router-dom";
@@ -110,6 +109,7 @@ const EditProduct = () => {
         setProductManufactureDate(null);
         setProductExpiryDate(null);
         setProductShelfDate(null);
+        setNotifStatus(true);
       } else {
         setError("Error: Product not found!");
       }

@@ -3,7 +3,6 @@ import { DatePicker } from "@progress/kendo-react-dateinputs";
 import { Label } from "@progress/kendo-react-labels";
 import { Input } from "@progress/kendo-react-inputs";
 import { DropDownList } from "@progress/kendo-react-dropdowns";
-import ChatbotFloatingButton from "./ChatbotFloatingButton";
 import TextBox from "./TextBox";
 import { addProduct } from "./utils/generateProducts";
 import { Notification } from "@progress/kendo-react-notification";
@@ -46,8 +45,8 @@ const AddProduct = () => {
         productShelfAddedDate: productShelfDate,
         createdDate: new Date().toISOString().split("T")[0], // Current date
         createdBy: "Admin", // Replace with actual user info if needed
-        modifiedBy: "Admin",
-        modifiedDate: new Date().toISOString().split("T")[0],
+        modifiedBy: null,
+        modifiedDate: null,
       };
 
       addProduct(newProduct); // Call the function to add the product

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import TextBox from "./TextBox";
 import { Button } from "@progress/kendo-react-buttons";
+import AIResponseAddProduct from "./utils/AIResponseAddProduct";
 
 const WebCapturebot = ({ base64 }) => {
   const [input, setInput] = useState("");
@@ -54,18 +55,8 @@ const WebCapturebot = ({ base64 }) => {
         {loading ? "Thinking..." : "Ask AI"}
       </Button>
 
-      {response && (
-        <div className="mt-4 p-3 bg-gray-100 border rounded whitespace-pre-line">
-          <strong>AI Response:</strong>
-          {response
-            .replace(/###\s*(.+)/g, "\n\n**$1**") // Convert ### headings to bold on a new line
-            .replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>") // Convert **bold** to HTML <strong>
-            .split("\n")
-            .map((line, index) => (
-              <p key={index} dangerouslySetInnerHTML={{ __html: line }} />
-            ))}
-        </div>
-      )}
+      {/* AI Response Add Product */}
+      <AIResponseAddProduct response={response} />
     </div>
   );
 };
