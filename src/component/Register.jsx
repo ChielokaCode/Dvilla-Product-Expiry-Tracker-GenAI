@@ -27,7 +27,6 @@ const Register = () => {
     if (notifStatus) {
       const timer = setTimeout(() => {
         setNotifStatus(false);
-        navigate("/dashboard");
       }, 3000);
       return () => clearTimeout(timer);
     }
