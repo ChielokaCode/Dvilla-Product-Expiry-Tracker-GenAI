@@ -4,12 +4,34 @@ import generateProducts, { deleteProduct } from "./utils/generateProducts";
 import ChatbotFloatingButton from "./ChatbotFloatingButton";
 import { Notification } from "@progress/kendo-react-notification";
 import { Button } from "@progress/kendo-react-buttons";
+import { Grid, GridColumn as Column } from "@progress/kendo-react-grid";
+import {
+  Dialog,
+  DialogActionsBar,
+  Window,
+} from "@progress/kendo-react-dialogs";
 
 const ShowProduct = () => {
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [deleteProductId, setDeleteProductId] = useState(null);
   const [notifStatus, setNotifStatus] = useState(false);
   const [error, setError] = useState("");
+  const [showModal, setShowModal] = useState(false);
+  const [selectedProduct, setSelectedProduct] = useState(null);
+  const [showLoader, setShowLoader] = React.useState(true);
+  const [data, setData] = React.useState([]);
+  const [visibleDialog, setVisibleDialog] = useState(false);
+  const [productToDelete, setProductToDelete] = useState(null);
+
+  const products = generateProducts().slice();
+
+  React.useEffect(() => {
+    setShowLoader(true);
+    setTimeout(() => {
+      setShowLoader(false);
+      setData(products);
+    }, 2000);
+  }, []);
 
   useEffect(() => {
     if (notifStatus) {
@@ -20,22 +42,42 @@ const ShowProduct = () => {
     }
   }, [notifStatus]);
 
+  const toggleDialog = () => {
+    setVisibleDialog(!visibleDialog);
+  };
+
+  // Handle row click to open modal
+  const handleRowClick = (event) => {
+    setSelectedProduct(event.dataItem);
+    setProductToDelete(event.dataItem);
+    setVisibleDialog(true);
+  };
+
+  // Close modal
+  const closeModal = () => {
+    setShowModal(false);
+    setVisibleDialog(false);
+    setSelectedProduct(null);
+  };
+
   const handleDelete = (productId) => {
     setDeleteProductId(productId);
+
     setShowDeleteModal(true);
+    setVisibleDialog(false);
+    closeModal();
   };
 
   const confirmDelete = () => {
     try {
       deleteProduct(deleteProductId);
+      setData(data.filter((product) => product.id !== productToDelete.id));
       setNotifStatus(true);
       setShowDeleteModal(false);
     } catch (e) {
       setError("Error deleting Product");
     }
   };
-
-  const products = generateProducts().slice();
 
   return (
     <div id="showProduct">
@@ -58,96 +100,140 @@ const ShowProduct = () => {
         <h2 className="text-xl font-bold mb-4">Product List</h2>
 
         <div className="overflow-x-auto">
-          <table className="min-w-full border border-gray-300 bg-white shadow-md rounded-lg">
-            <thead className="bg-gray-800 text-white">
-              <tr>
-                <th className="border px-4 py-2">ID</th>
-                <th className="border px-4 py-2">Name</th>
-                <th className="border px-4 py-2">Category</th>
-                <th className="border px-4 py-2">Quantity</th>
-                <th className="border px-4 py-2">Batch No</th>
-                <th className="border px-4 py-2">Manufacture Date</th>
-                <th className="border px-4 py-2">Expiration Date</th>
-                <th className="border px-4 py-2">Shelf Added Date</th>
-                <th className="border px-4 py-2">Created Date</th>
-                <th className="border px-4 py-2">Created By</th>
-                <th className="border px-4 py-2">Modified By</th>
-                <th className="border px-4 py-2">Modified Date</th>
-                <th className="px-4 py-2 border">Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-              {products.map((product) => (
-                <tr key={product.id} className="border">
-                  <td className="border px-4 py-2">{product.id}</td>
-                  <td className="border px-4 py-2">{product.productName}</td>
-                  <td className="border px-4 py-2">
-                    {product.productCategory}
-                  </td>
-                  <td className="border px-4 py-2">
-                    {product.productQuantity}
-                  </td>
-                  <td className="border px-4 py-2">{product.productBatchNo}</td>
-                  <td className="border px-4 py-2">
-                    {product.productManufactureDate.split("T")[0]}
-                  </td>
-                  <td className="border px-4 py-2">
-                    {product.productExpirationDate.split("T")[0]}
-                  </td>
-                  <td className="border px-4 py-2">
-                    {product.productShelfAddedDate.split("T")[0]}
-                  </td>
-                  <td className="border px-4 py-2">{product.createdDate}</td>
-                  <td className="border px-4 py-2">{product.createdBy}</td>
-                  <td className="border px-4 py-2">{product.modifiedBy}</td>
-                  <td className="border px-4 py-2">{product.modifiedDate}</td>
-                  <td className="border px-4 py-2 flex space-x-2">
-                    <Button themeColor={"info"}>
-                      <Link
-                        to={`/dashboard/editProduct/${product.id}`}
-                        className=" text-white px-3 py-1 rounded-md hover:bg-blue-600"
-                      >
-                        Edit
-                      </Link>
-                    </Button>
-                    <Button
-                      onClick={() => handleDelete(product.id)}
-                      themeColor={"error"}
-                      className="bg-red-500 text-white px-3 py-1 rounded-md hover:bg-red-600"
-                    >
-                      Delete
-                    </Button>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+          <Grid
+            style={{
+              height: "365px",
+            }}
+            onRowClick={handleRowClick}
+            dataItemKey="id"
+            data={data}
+            autoProcessData={true}
+            navigatable={true}
+            filterable={true}
+            showLoader={showLoader}
+            sortable={{
+              allowUnsort: true,
+              mode: "single",
+            }}
+            defaultSort={[
+              {
+                field: "ProductName",
+                dir: "desc",
+              },
+            ]}
+          >
+            <Column field="id" title="ID" filterable={false} width="40px" />
+            <Column field="productName" title="Product Name" width="240px" />
+            <Column
+              field="productCategory"
+              title="Product Category"
+              width="220px"
+            />
+            <Column
+              field="productDescription"
+              width="220px"
+              title="Product Description"
+            />
+            <Column
+              field="productQuantity"
+              filter="numeric"
+              title="Product Quantity"
+              width="150px"
+            />
+            <Column
+              field="productBatchNo"
+              title="Product Batch No"
+              width="220px"
+            />
+            <Column
+              field="productManufactureDate"
+              title="Manufacture Date"
+              width="220px"
+              filter="date"
+              format="{0:d}"
+            />
+            <Column
+              field="productExpirationDate"
+              title="Expiration Date"
+              width="220px"
+              filter="date"
+              format="{0:d}"
+            />
+            <Column
+              field="productShelfAddedDate"
+              title="Shelf Date"
+              width="220px"
+              filter="date"
+              format="{0:d}"
+            />
+            <Column
+              field="createdDate"
+              title="Created Date"
+              width="220px"
+              filter="date"
+              format="{0:d}"
+            />
+            <Column field="createdBy" title="Created By" width="220px" />
+            <Column field="modifiedBy" title="Modified By" width="220px" />
+            <Column
+              field="modifiedDate"
+              title="Modified Date"
+              width="220px"
+              filter="date"
+              format="{0:d}"
+            />
+          </Grid>
+
+          {/* Modal for Edit/Delete */}
+          {visibleDialog && selectedProduct && (
+            <Dialog title={"Please confirm"} onClose={toggleDialog}>
+              <p style={{ margin: "25px", textAlign: "center" }}>
+                Actions for {selectedProduct.productName}
+              </p>
+              <DialogActionsBar>
+                <Button themeColor="info">
+                  <Link
+                    to={`/dashboard/editProduct/${selectedProduct.id}`}
+                    className="text-white px-3 py-1 rounded-md "
+                  >
+                    Edit
+                  </Link>
+                </Button>
+                <Button
+                  onClick={() => handleDelete(selectedProduct.id)}
+                  themeColor="error"
+                  className="bg-red-500 text-white px-3 py-1 rounded-md hover:bg-red-600"
+                >
+                  Delete
+                </Button>
+              </DialogActionsBar>
+            </Dialog>
+          )}
         </div>
       </div>
 
       {/* Delete Confirmation Modal */}
       {showDeleteModal && (
-        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
-          <div className="bg-white p-6 rounded-lg shadow-lg text-center">
-            <p className="text-lg font-semibold mb-4">
-              Are you sure you want to delete?
-            </p>
-            <div className="flex justify-center space-x-4">
-              <button
-                onClick={confirmDelete}
-                className="bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600"
-              >
-                Delete
-              </button>
-              <button
-                onClick={() => setShowDeleteModal(false)}
-                className="bg-gray-300 px-4 py-2 rounded-md hover:bg-gray-400"
-              >
-                Cancel
-              </button>
-            </div>
-          </div>
-        </div>
+        <Dialog
+          title={"Please confirm"}
+          onClose={() => setShowDeleteModal(false)}
+        >
+          <p style={{ margin: "25px", textAlign: "center" }}>
+            Are you sure you want to delete?
+          </p>
+          <DialogActionsBar>
+            <Button themeColor="info" onClick={confirmDelete}>
+              Delete
+            </Button>
+            <Button
+              onClick={() => setShowDeleteModal(false)}
+              themeColor="base"
+              className="bg-red-500 text-white px-3 py-1 rounded-md hover:bg-red-600"
+            >
+              Cancel
+            </Button>
+          </DialogActionsBar>
+        </Dialog>
       )}
     </div>
   );
