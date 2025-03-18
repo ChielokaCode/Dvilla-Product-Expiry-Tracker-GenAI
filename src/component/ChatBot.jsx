@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import TextBox from "./TextBox";
 import generateProducts from "./utils/generateProducts";
 import { Button } from "@progress/kendo-react-buttons";
+import axios from "axios";
 
 const ChatBot = () => {
   const [input, setInput] = useState("");
@@ -13,18 +14,20 @@ const ChatBot = () => {
   const handleAskAI = async () => {
     setLoading(true);
     try {
-      const res = await fetch("/api/generate-summary", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
+      const res = await axios.post(
+        "http://localhost:5000/api/generate-summary",
+        {
           expiredProducts: products,
           userInput:
             input ||
             "Give a summary of expired products. Let all date be in a human readable sentence",
-        }),
-      });
+        },
+        {
+          headers: { "Content-Type": "application/json" },
+        }
+      );
 
-      const data = await res.json();
+      const data = res.data; // ✅ FIXED: axios already handles JSON parsing
       setResponse(data.summary);
     } catch (error) {
       console.error("Error:", error);
