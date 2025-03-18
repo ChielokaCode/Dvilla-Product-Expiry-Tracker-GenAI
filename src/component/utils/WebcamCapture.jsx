@@ -21,7 +21,7 @@ const WebcamCapture = () => {
   }, [webcamRef, setImgSrc]);
 
   const videoConstraints = {
-    facingMode: "user",
+    facingMode: "environment",
   };
 
   return (
@@ -32,7 +32,7 @@ const WebcamCapture = () => {
           screenshotFormat="image/jpeg"
           videoConstraints={videoConstraints}
           className="border-1 rounded-lg shadow-lg"
-          mirrored={true}
+          mirrored={false}
           style={{
             marginLeft: "auto",
             marginRight: "auto",
