@@ -60,7 +60,7 @@ const AIResponseAddProduct = ({ response }) => {
       </div>
 
       {/* Add Product Button */}
-      {response && (
+      {response && response !== "Something went wrong. Please try again." && (
         <Button
           onClick={handleAddProduct}
           themeColor={"info"}

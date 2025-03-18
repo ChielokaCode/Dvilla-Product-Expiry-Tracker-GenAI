@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import TextBox from "./TextBox";
 import { Button } from "@progress/kendo-react-buttons";
 import AIResponseAddProduct from "./utils/AIResponseAddProduct";
+import axios from "axios";
 
 const WebCapturebot = ({ base64 }) => {
   const [input, setInput] = useState("");
@@ -12,18 +13,20 @@ const WebCapturebot = ({ base64 }) => {
   const handleAskAI = async () => {
     setLoading(true);
     try {
-      const res = await fetch("/api/extract-text", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
+      const res = await axios.post(
+        "http://localhost:5000/api/extract-texts",
+        {
           baseImage: base64,
           userInput:
             input ||
             "Extract Product Name, Description, Category, Batch No, Manufacture Date (Mfg. Date), Expiration Date (Exp.Date)",
-        }),
-      });
+        },
+        {
+          headers: { "Content-Type": "application/json" },
+        }
+      );
 
-      const data = await res.json();
+      const data = res.data; // ✅ FIXED: axios already handles JSON parsing
       setResponse(data.summary);
     } catch (error) {
       console.error("Error:", error);
