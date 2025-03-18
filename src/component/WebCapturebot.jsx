@@ -7,12 +7,12 @@ const WebCapturebot = ({ base64 }) => {
   const [input, setInput] = useState("");
   const [response, setResponse] = useState("");
   const [loading, setLoading] = useState(false);
-  const serverUrl = "https://product-expiry-tracker-genai-backend.onrender.com";
+  // const serverUrl = "https://product-expiry-tracker-genai-backend.onrender.com";
 
   const handleAskAI = async () => {
     setLoading(true);
     try {
-      const res = await fetch(`${serverUrl}/api/extract-text`, {
+      const res = await fetch("/api/extract-text", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

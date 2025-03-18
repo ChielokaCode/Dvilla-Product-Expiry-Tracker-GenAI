@@ -2,6 +2,7 @@
   "name": "product-details",
   "version": "0.1.0",
   "private": true,
+  "proxy": "https://product-expiry-tracker-genai-backend.onrender.com",
   "dependencies": {
     "@headlessui/react": "^2.2.0",
     "@heroicons/react": "^2.2.0",

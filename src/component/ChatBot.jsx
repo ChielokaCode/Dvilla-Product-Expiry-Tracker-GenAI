@@ -8,17 +8,19 @@ const ChatBot = () => {
   const [response, setResponse] = useState("");
   const [loading, setLoading] = useState(false);
   const products = generateProducts(); // Generate product data
-  const serverUrl = "https://product-expiry-tracker-genai-backend.onrender.com";
+  // const serverUrl = "https://product-expiry-tracker-genai-backend.onrender.com";
 
   const handleAskAI = async () => {
     setLoading(true);
     try {
-      const res = await fetch(`${serverUrl}/api/generate-summary`, {
+      const res = await fetch("/api/generate-summary", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           expiredProducts: products,
-          userInput: input || "Give a summary of expired products.",
+          userInput:
+            input ||
+            "Give a summary of expired products. Let all date be in a human readable sentence",
         }),
       });
 
