@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { UserCircleIcon } from "@heroicons/react/24/solid";
 import { Link } from "react-router-dom";
 import { SvgIcon } from "@progress/kendo-react-common";
@@ -9,14 +9,22 @@ import { DropDownList } from "@progress/kendo-react-dropdowns";
 import { Button } from "@progress/kendo-react-buttons";
 
 const Profile = () => {
-  const [data, setData] = React.useState(undefined);
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [email, setEmail] = useState("");
+  const [country, setCountry] = useState("");
 
-  const handleChange = (event) => {
-    setData(event.data);
-  };
-  const handleSave = () => {};
+  // const handleSave = () => {};
 
-  const country = ["USA", "Nigeria"];
+  useEffect(() => {
+    const loggedInUser = JSON.parse(sessionStorage.getItem("loggedInUser"));
+    setFirstName(loggedInUser.firstName);
+    setLastName(loggedInUser.lastName);
+    setEmail(loggedInUser.email);
+    setCountry(loggedInUser.country);
+  }, []);
+
+  const countryList = ["USA", "Nigeria"];
   return (
     <div id="profile">
       <div className="absolute top-4 left-4 w-20 h-20 p-4">
@@ -35,23 +43,20 @@ const Profile = () => {
 
           <div className="mt-4 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
             <div className="col-span-full">
-              <label
-                htmlFor="photo"
-                className="block text-sm/6 font-medium text-gray-900"
-              >
-                Photo
-              </label>
+              <Label className="font-medium" editorId="photo">
+                Photo&nbsp;
+              </Label>
               <div className="mt-2 flex items-center gap-x-3">
                 <UserCircleIcon
                   aria-hidden="true"
                   className="size-20 text-gray-300"
                 />
-                <button
+                <Button
                   type="button"
                   className="rounded-md bg-white px-2.5 py-1.5 text-sm font-semibold text-gray-900 ring-1 shadow-xs ring-gray-300 ring-inset hover:bg-gray-50"
                 >
                   Change
-                </button>
+                </Button>
               </div>
             </div>
           </div>
@@ -72,10 +77,11 @@ const Profile = () => {
               </Label>
               <Input
                 id="firstName"
+                disabled
                 name="firstName"
                 type="text"
-                value={data}
-                onChange={handleChange}
+                value={firstName}
+                onChange={(e) => setFirstName(e.target.value)}
               />
             </div>
 
@@ -85,10 +91,11 @@ const Profile = () => {
               </Label>
               <Input
                 id="lastName"
+                disabled
                 name="lastName"
                 type="text"
-                value={data}
-                onChange={handleChange}
+                value={lastName}
+                onChange={(e) => setLastName(e.target.value)}
               />
             </div>
 
@@ -99,9 +106,10 @@ const Profile = () => {
               <Input
                 id="email"
                 name="email"
+                disabled
                 type="email"
-                value={data}
-                onChange={handleChange}
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
               />
             </div>
 
@@ -113,15 +121,18 @@ const Profile = () => {
                 style={{
                   width: "390px",
                 }}
-                data={country}
-                defaultValue="Nigeria"
+                id="country"
+                disabled
+                onChange={(e) => setCountry(e.target.value)}
+                data={countryList}
+                defaultValue={country}
               />
             </div>
           </div>
         </div>
       </div>
 
-      <div className="absolute bottom-0 right-10 gap-x-6">
+      {/* <div className="absolute bottom-0 right-10 gap-x-6">
         <Button
           className="px-5 py-3 bg-blue-700 text-sm font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
           onClick={handleSave}
@@ -131,7 +142,7 @@ const Profile = () => {
         >
           Save
         </Button>
-      </div>
+      </div> */}
     </div>
   );
 };
