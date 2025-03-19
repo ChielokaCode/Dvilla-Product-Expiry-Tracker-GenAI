@@ -60,15 +60,17 @@ const AIResponseAddProduct = ({ response }) => {
       </div>
 
       {/* Add Product Button */}
-      {response && response !== "Something went wrong. Please try again." && (
-        <Button
-          onClick={handleAddProduct}
-          themeColor={"info"}
-          className="mt-4 px-4 py-2 bg-blue-500 text-white rounded"
-        >
-          Add Product
-        </Button>
-      )}
+      {response &&
+        response !== "Something went wrong. Please try again." &&
+        !response.includes("I'm unable to") && (
+          <Button
+            onClick={handleAddProduct}
+            themeColor={"info"}
+            className="mt-4 px-4 py-2 bg-blue-500 text-white rounded"
+          >
+            Add Product
+          </Button>
+        )}
 
       {/* Success / Error Message */}
       {notifStatus && (

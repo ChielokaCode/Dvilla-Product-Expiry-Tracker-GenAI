@@ -2,32 +2,46 @@ import React, { useState } from "react";
 import TextBox from "./TextBox";
 import { Button } from "@progress/kendo-react-buttons";
 import AIResponseAddProduct from "./utils/AIResponseAddProduct";
-import axios from "axios";
+import OpenAI from "openai";
 
 const WebCapturebot = ({ base64 }) => {
   const [input, setInput] = useState("");
   const [response, setResponse] = useState("");
   const [loading, setLoading] = useState(false);
-  // const serverUrl = "https://product-expiry-tracker-genai-backend.onrender.com";
+
+  const client = new OpenAI({
+    apiKey: process.env.REACT_APP_OPENAI_API_KEY,
+    dangerouslyAllowBrowser: true,
+  });
 
   const handleAskAI = async () => {
     setLoading(true);
-    try {
-      const res = await axios.post(
-        "http://localhost:5000/api/extract-texts",
-        {
-          baseImage: base64,
-          userInput:
-            input ||
-            "Extract Product Name, Description, Category, Batch No, Manufacture Date (Mfg. Date), Expiration Date (Exp.Date)",
-        },
-        {
-          headers: { "Content-Type": "application/json" },
-        }
-      );
+    const prompt =
+      input ||
+      "Extract Product Name, Description, Category, Batch No, Manufacture Date (Mfg. Date), Expiration Date (Exp.Date)";
 
-      const data = res.data; // ✅ FIXED: axios already handles JSON parsing
-      setResponse(data.summary);
+    try {
+      const completion = await client.chat.completions.create({
+        model: "gpt-4o-mini",
+        messages: [
+          {
+            role: "user",
+            content: [
+              { type: "text", text: prompt },
+              {
+                type: "image_url",
+                image_url: {
+                  url: base64,
+                },
+              },
+            ],
+          },
+        ],
+      });
+
+      const textResponse =
+        completion?.choices?.[0]?.message?.content || "No response from AI";
+      setResponse(textResponse);
     } catch (error) {
       console.error("Error:", error);
       setResponse("Something went wrong. Please try again.");

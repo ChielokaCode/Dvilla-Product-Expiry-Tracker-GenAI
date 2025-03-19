@@ -1,15 +1,10 @@
 import { Link } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import generateProducts, { deleteProduct } from "./utils/generateProducts";
-import ChatbotFloatingButton from "./ChatbotFloatingButton";
 import { Notification } from "@progress/kendo-react-notification";
 import { Button } from "@progress/kendo-react-buttons";
 import { Grid, GridColumn as Column } from "@progress/kendo-react-grid";
-import {
-  Dialog,
-  DialogActionsBar,
-  Window,
-} from "@progress/kendo-react-dialogs";
+import { Dialog, DialogActionsBar } from "@progress/kendo-react-dialogs";
 
 const ShowProduct = () => {
   const [showDeleteModal, setShowDeleteModal] = useState(false);

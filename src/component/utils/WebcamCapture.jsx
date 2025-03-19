@@ -27,6 +27,9 @@ const WebcamCapture = () => {
   return (
     <div id="webcapture">
       <div className="flex flex-col items-center justify-center min-h-screen px-4 py-12 lg:px-8">
+        <h2 className="text-xl font-bold mb-4 print:hidden">
+          Scan product details to be Automatically added into Inventory
+        </h2>
         <Webcam
           ref={webcamRef}
           screenshotFormat="image/jpeg"
@@ -56,12 +59,12 @@ const WebcamCapture = () => {
           }}
         />
         <Button themeColor={"primary"} size={"large"} onClick={capture}>
-          Capture photo
+          Capture Product
         </Button>
         {/* Camera Image base64 imgSrc  */}
         {isCaptured ? (
           <div className="mt-4 p-3 bg-gray-100 border rounded w-auto overflow-hidden break-words">
-            <strong>Picture: </strong>
+            <strong>Product Photo: </strong>
             <img src={imgSrc} alt="captured" />
           </div>
         ) : (
