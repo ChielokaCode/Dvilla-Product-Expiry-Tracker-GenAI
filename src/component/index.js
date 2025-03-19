@@ -10,6 +10,7 @@ import ShowCloseToExpiryProducts from "./ShowCloseToExpiryProducts";
 import SideBar from "./SideBar";
 import ChatBot from "./ChatBot";
 import Profile from "./Profile";
+import ProductProgressBar from "./ProductProgressBar";
 
 export {
   Login,
@@ -22,4 +23,5 @@ export {
   ShowCloseToExpiryProducts,
   ChatBot,
   Profile,
+  ProductProgressBar,
 };

@@ -81,11 +81,11 @@ const generateProducts = () => {
       },
     ];
 
-    localStorage.setItem("products", JSON.stringify(products)); // Save to localStorage
+    localStorage.setItem("products", JSON.stringify(products));
     return products;
   }
 
-  return existingProducts; // Return stored products
+  return existingProducts;
 };
 
 // Function to add a new product to localStorage
@@ -95,8 +95,8 @@ export const addProduct = (newProduct) => {
   // Assign a new ID (incremental)
   newProduct.id = products.length ? products[products.length - 1].id + 1 : 1;
 
-  products.push(newProduct); // Add new product
-  localStorage.setItem("products", JSON.stringify(products)); // Update localStorage
+  products.push(newProduct);
+  localStorage.setItem("products", JSON.stringify(products));
 };
 
 export const editProduct = (updatedProduct) => {
@@ -108,22 +108,39 @@ export const editProduct = (updatedProduct) => {
   );
 
   if (productIndex !== -1) {
-    products[productIndex] = { ...products[productIndex], ...updatedProduct }; // Merge changes
+    products[productIndex] = { ...products[productIndex], ...updatedProduct };
     products[productIndex].modifiedBy = "Admin";
     products[productIndex].modifiedDate = new Date()
       .toISOString()
-      .split("T")[0]; // Update modified date
+      .split("T")[0];
 
     localStorage.setItem("products", JSON.stringify(products)); // Save to localStorage
-    return true; // Indicate success
+    return true;
   }
 
-  return false; // Indicate failure
+  return false;
 };
 
 // Function to retrieve products from localStorage
 export const getProducts = () => {
   return JSON.parse(localStorage.getItem("products")) || [];
+};
+
+export const getProductCount = () => {
+  const products = JSON.parse(localStorage.getItem("products")) || [];
+  return products.length;
+};
+
+export const getCloseToExpiryProductCount = () => {
+  const products = JSON.parse(localStorage.getItem("products")) || [];
+  const today = new Date();
+  const twoMonthsLater = new Date();
+  twoMonthsLater.setMonth(twoMonthsLater.getMonth() + 2); // Add 2 months
+
+  return products.filter((product) => {
+    const expiryDate = new Date(product.productExpirationDate);
+    return expiryDate >= today && expiryDate <= twoMonthsLater;
+  }).length;
 };
 
 export const deleteProduct = (id) => {

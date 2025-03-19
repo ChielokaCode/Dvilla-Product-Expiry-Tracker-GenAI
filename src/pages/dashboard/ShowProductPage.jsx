@@ -1,17 +1,28 @@
-import React from 'react'
+import React from "react";
 
 import {
-    ShowProduct,
-    SideBar
-  } from "../../component/index";
+  ProductProgressBar,
+  ShowProduct,
+  SideBar,
+} from "../../component/index";
+import {
+  getCloseToExpiryProductCount,
+  getProductCount,
+} from "../../component/utils/generateProducts";
 
 const ShowProductPage = () => {
+  const productLength = getProductCount();
+  const productCloseToExpiry = getCloseToExpiryProductCount();
   return (
     <>
-    <SideBar />
-    <ShowProduct/>
+      <SideBar />
+      <ProductProgressBar
+        productLength={productLength}
+        expiredProdctLength={productCloseToExpiry}
+      />
+      <ShowProduct />
     </>
-  )
-}
+  );
+};
 
-export default ShowProductPage
+export default ShowProductPage;
