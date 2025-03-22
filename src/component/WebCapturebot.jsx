@@ -220,7 +220,7 @@ import OpenAI from "openai";
 import { Input } from "@progress/kendo-react-inputs";
 import { Button } from "@progress/kendo-react-buttons";
 import { SvgIcon } from "@progress/kendo-react-common";
-import * as svgIcons from "@progress/kendo-svg-icons";
+import { cameraIcon } from "@progress/kendo-svg-icons";
 import AIResponseAddProduct from "./utils/AIResponseAddProduct";
 
 const WebCapturebot = () => {
@@ -327,11 +327,7 @@ const WebCapturebot = () => {
           onClick={capture}
           className="bg-gray-300 text-black p-2 rounded-lg"
         >
-          <SvgIcon
-            icon={{
-              name: "cameraIcon",
-            }}
-          />
+          <SvgIcon icon={cameraIcon} size="medium" />
         </Button>
         <Input
           type="text"
