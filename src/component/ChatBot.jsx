@@ -2,6 +2,8 @@ import React, { useState, useEffect, useRef } from "react";
 import OpenAI from "openai";
 import generateProducts from "./utils/generateProducts";
 import { Slide, Fade, Zoom } from "@progress/kendo-react-animation";
+import { Input } from "@progress/kendo-react-inputs";
+import { Button } from "@progress/kendo-react-buttons";
 
 const ChatBot = () => {
   const [input, setInput] = useState("");
@@ -117,7 +119,7 @@ const ChatBot = () => {
 
       {/* User Input Box */}
       <div className="p-4 border-t bg-white flex items-center">
-        <input
+        <Input
           type="text"
           className="flex-1 border rounded-lg p-2 outline-none"
           placeholder="Ask AI something..."
@@ -125,13 +127,13 @@ const ChatBot = () => {
           onChange={(e) => setInput(e.target.value)}
           onKeyDown={(e) => e.key === "Enter" && handleSendMessage()}
         />
-        <button
+        <Button
           onClick={handleSendMessage}
           className="ml-2 px-4 py-2 bg-blue-500 text-white rounded-lg"
           disabled={loading}
         >
           {loading ? "Thinking..." : "Send"}
-        </button>
+        </Button>
       </div>
     </div>
   );
