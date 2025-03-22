@@ -40,9 +40,15 @@ const AddProduct = () => {
         productDescription,
         productQuantity: Number(productQuantity), // Ensure it's a number
         productBatchNo,
-        productManufactureDate,
-        productExpirationDate: productExpiryDate, // Match naming convention
-        productShelfAddedDate: productShelfDate,
+        productManufactureDate: new Date(productManufactureDate)
+          .toISOString()
+          .split("T")[0],
+        productExpirationDate: new Date(productExpiryDate)
+          .toISOString()
+          .split("T")[0], // Match naming convention
+        productShelfAddedDate: new Date(productShelfDate)
+          .toISOString()
+          .split("T")[0],
         createdDate: new Date().toISOString().split("T")[0], // Current date
         createdBy: "Admin", // Replace with actual user info if needed
         modifiedBy: null,

@@ -54,16 +54,22 @@ const EditProduct = () => {
         setProductManufactureDate(
           productToEdit.productManufactureDate
             ? new Date(productToEdit.productManufactureDate)
+                .toISOString()
+                .split("T")[0]
             : null
         );
         setProductExpiryDate(
           productToEdit.productExpirationDate
             ? new Date(productToEdit.productExpirationDate)
+                .toISOString()
+                .split("T")[0]
             : null
         );
         setProductShelfDate(
           productToEdit.productShelfAddedDate
             ? new Date(productToEdit.productShelfAddedDate)
+                .toISOString()
+                .split("T")[0]
             : null
         );
       }
