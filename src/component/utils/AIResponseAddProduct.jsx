@@ -6,24 +6,39 @@ const AIResponseAddProduct = ({ response }) => {
   const [notifStatus, setNotifStatus] = useState(false);
   const [error, setError] = useState(null);
 
-  const extractField = (fieldName, response) => {
-    const regex = new RegExp(`\\*\\*${fieldName}:\\*\\*\\s*([^*-]+)`, "i");
+  const extractProductName = (response) => {
+    const regex = /(?:Product Name|Name):\s*(.+)/i;
     const match = response.match(regex);
     return match ? match[1].trim() : "";
   };
 
-  const extractFieldDate = (fieldName, response) => {
-    const value = extractField(fieldName, response);
-    return value ? new Date(value) : null;
+  const extractManufacturingDate = (response) => {
+    const regex =
+      /(?:Mfg Date|Manufacture Date):\s*(\d{4}[-\/]?\d{2}[-\/]?\d{2})\b/i;
+    const match = response.match(regex);
+    return match ? new Date(match[1].trim()) : null;
+  };
+
+  const extractExpirationDate = (response) => {
+    const regex =
+      /(?:Exp Date|Expiration Date):\s*(\d{4}[-\/]?\d{2}[-\/]?\d{2})\b/i;
+    const match = response.match(regex);
+    return match ? new Date(match[1].trim()) : null;
+  };
+
+  const extractDescription = (response) => {
+    const regex = /(?:Description):\s*(.+)/i;
+    const match = response.match(regex);
+    return match ? match[1].trim() : "";
   };
 
   // Extract product details from AI response dynamically
   const extractProductDetails = (responseText) => {
     return {
-      productName: extractField("Product Name", responseText),
-      productDescription: extractField("Description", responseText),
-      productManufactureDate: extractFieldDate("Mfg Date", responseText),
-      productExpirationDate: extractFieldDate("Exp Date", responseText),
+      productName: extractProductName(responseText),
+      productDescription: extractDescription(responseText),
+      productManufactureDate: extractManufacturingDate(responseText),
+      productExpirationDate: extractExpirationDate(responseText),
       productShelfAddedDate: new Date(), // Today
       createdDate: new Date(),
       createdBy: "Admin",
