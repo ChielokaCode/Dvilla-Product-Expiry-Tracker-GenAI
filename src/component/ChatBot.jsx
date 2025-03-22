@@ -1,11 +1,14 @@
 import React, { useState, useEffect, useRef } from "react";
 import OpenAI from "openai";
+import generateProducts from "./utils/generateProducts";
+import { Expand, Slide } from "@progress/kendo-react-animation";
 
 const ChatBot = () => {
   const [input, setInput] = useState("");
   const [chatHistory, setChatHistory] = useState([]);
   const [loading, setLoading] = useState(false);
   const chatEndRef = useRef(null);
+  const products = generateProducts(); // Generate product data
 
   const client = new OpenAI({
     apiKey: process.env.REACT_APP_OPENAI_API_KEY,
@@ -13,8 +16,12 @@ const ChatBot = () => {
   });
 
   const today = new Date().toISOString().split("T")[0];
-  const productList =
-    "Sample inventory: Milk (expires 2025-04-10), Bread (expires 2025-03-30)";
+  const productList = products
+    .map(
+      (item) =>
+        `${item.productName}, Qty: ${item.productQuantity} (expires on ${item.productExpirationDate})`
+    )
+    .join("\n");
 
   useEffect(() => {
     // Auto-scroll to the latest message
@@ -81,23 +88,25 @@ const ChatBot = () => {
     <div className="flex flex-col h-screen max-w-lg mx-auto border rounded-lg shadow-lg">
       {/* Chat Messages Container */}
       <div className="flex-1 overflow-y-auto p-4 space-y-2 bg-gray-100">
+        import {Slide} from "@progress/kendo-react-animation";
         {chatHistory.map((msg, index) => (
-          <div
-            key={index}
-            className={`flex ${
-              msg.role === "user" ? "justify-end" : "justify-start"
-            }`}
-          >
+          <Slide key={index} direction={msg.role === "user" ? "right" : "left"}>
             <div
-              className={`px-4 py-2 rounded-lg max-w-xs ${
-                msg.role === "user"
-                  ? "bg-blue-500 text-white"
-                  : "bg-gray-300 text-black"
+              className={`flex ${
+                msg.role === "user" ? "justify-end" : "justify-start"
               }`}
             >
-              {msg.content}
+              <div
+                className={`px-4 py-2 rounded-lg max-w-xs ${
+                  msg.role === "user"
+                    ? "bg-blue-500 text-white"
+                    : "bg-gray-300 text-black"
+                }`}
+              >
+                {msg.content}
+              </div>
             </div>
-          </div>
+          </Slide>
         ))}
         <div ref={chatEndRef} />
       </div>
