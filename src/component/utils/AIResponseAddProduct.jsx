@@ -16,12 +16,20 @@ const AIResponseAddProduct = ({ response }) => {
       const match = responseText.match(new RegExp(`${label}:\\s*(.+)`, "i"));
       return match ? match[1].trim() : new Date();
     };
+
+    const extractExpirationDate = (response) => {
+      const regex = /(?:Exp Date|Expiration Date):\s*([\d/-]+)/i;
+      const match = response.match(regex);
+      return match ? new Date(match[1].trim()) : null;
+    };
     return {
       productName: extractField("Product Name"),
+      productCategory: extractField("Category"),
       productDescription: extractField("Description"),
-      productManufactureDate: extractFieldDate("Mfg Date"),
-      productExpirationDate: extractFieldDate("Exp Date"),
-      productShelfAddedDate: new Date(), // Today
+      productQuantity: 1, // Default quantity
+      productBatchNo: extractField("Batch No"),
+      productManufactureDate: extractFieldDate("Manufacture Date"),
+      productExpirationDate: extractExpirationDate(responseText),
       createdDate: new Date(),
       createdBy: "Admin",
       modifiedBy: null,
