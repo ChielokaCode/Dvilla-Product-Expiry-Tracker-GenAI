@@ -7,14 +7,14 @@ const AIResponseAddProduct = ({ response }) => {
   const [error, setError] = useState(null);
 
   const extractField = (fieldName, response) => {
-    const regex = new RegExp(`-\\s*${fieldName}:\\s*(.*)`, "i");
+    const regex = new RegExp(`\\*\\*${fieldName}:\\*\\*\\s*([^*-]+)`, "i");
     const match = response.match(regex);
     return match ? match[1].trim() : "";
   };
 
   const extractFieldDate = (fieldName, response) => {
     const value = extractField(fieldName, response);
-    return value ? new Date(value) : null; // Return Date object
+    return value ? new Date(value) : null;
   };
 
   // Extract product details from AI response dynamically
@@ -28,7 +28,7 @@ const AIResponseAddProduct = ({ response }) => {
       productManufactureDate: extractFieldDate("Mfg Date", responseText),
       productExpirationDate: extractFieldDate("Exp Date", responseText),
       productShelfAddedDate: new Date(), // Today
-      createdDate: new Date().toISOString().split("T")[0],
+      createdDate: new Date(),
       createdBy: "Admin",
       modifiedBy: null,
       modifiedDate: null,
