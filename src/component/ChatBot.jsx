@@ -4,6 +4,8 @@ import generateProducts from "./utils/generateProducts";
 import { Slide, Fade, Zoom } from "@progress/kendo-react-animation";
 import { Input } from "@progress/kendo-react-inputs";
 import { Button } from "@progress/kendo-react-buttons";
+import { SvgIcon } from "@progress/kendo-react-common";
+import { paperPlaneIcon } from "@progress/kendo-svg-icons";
 
 const ChatBot = () => {
   const [input, setInput] = useState("");
@@ -129,10 +131,15 @@ const ChatBot = () => {
         />
         <Button
           onClick={handleSendMessage}
+          themeColor={"info"}
           className="ml-2 px-4 py-2 bg-blue-500 text-white rounded-lg"
           disabled={loading}
         >
-          {loading ? "Thinking..." : "Send"}
+          {loading ? (
+            "Thinking..."
+          ) : (
+            <SvgIcon icon={paperPlaneIcon} size="medium" />
+          )}
         </Button>
       </div>
     </div>
