@@ -317,7 +317,7 @@ const WebCapturebot = () => {
           videoConstraints={videoConstraints}
           className="border-1 rounded-lg shadow-lg"
           mirrored={false}
-          style={{ width: 320, height: 240 }}
+          style={{ width: 640, height: 480 }}
         />
 
         {response &&
