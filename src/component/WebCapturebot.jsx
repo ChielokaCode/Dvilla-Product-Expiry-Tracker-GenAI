@@ -214,7 +214,7 @@
 
 // export default WebCaptureBot;
 
-import React, { useState, useRef, useEffect, useCallback } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import Webcam from "react-webcam";
 import OpenAI from "openai";
 import { Input } from "@progress/kendo-react-inputs";
@@ -231,6 +231,7 @@ const WebCapturebot = () => {
   const [loading, setLoading] = useState(false);
   const [imgSrc, setImgSrc] = useState("");
   const [response, setResponse] = useState("");
+  const [isCaptured, setIsCaptured] = useState(false);
 
   const client = new OpenAI({
     apiKey: process.env.REACT_APP_OPENAI_API_KEY,
@@ -241,14 +242,22 @@ const WebCapturebot = () => {
     chatEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [chatHistory]);
 
-  const capture = useCallback(() => {
+  const capture = () => {
     try {
       const imageSrc = webcamRef.current.getScreenshot();
       setImgSrc(imageSrc);
+      setIsCaptured(true);
+
+      // Add captured image to chat history
+      setChatHistory([
+        ...chatHistory,
+        { role: "user", type: "image", content: imageSrc },
+      ]);
     } catch (e) {
       console.error("Capture failed", e);
+      setIsCaptured(false);
     }
-  }, []);
+  };
 
   const handleAskAI = async () => {
     if (!input.trim() && !imgSrc) return;
@@ -293,6 +302,10 @@ const WebCapturebot = () => {
     setLoading(false);
   };
 
+  const videoConstraints = {
+    facingMode: "environment",
+  };
+
   return (
     <div className="flex flex-col h-screen max-w-lg mx-auto border rounded-lg shadow-lg">
       <div className="flex-1 overflow-y-auto p-4 space-y-2 bg-gray-100">
@@ -310,7 +323,16 @@ const WebCapturebot = () => {
                   : "bg-gray-300 text-black"
               }`}
             >
-              {msg.content}
+              {/* Check if message is image */}
+              {msg.type === "image" ? (
+                <img
+                  src={msg.content}
+                  alt="Captured"
+                  className="rounded-lg w-full"
+                />
+              ) : (
+                msg.content
+              )}
             </div>
           </div>
         ))}
@@ -321,7 +343,19 @@ const WebCapturebot = () => {
         <Webcam
           ref={webcamRef}
           screenshotFormat="image/jpeg"
-          className="hidden"
+          videoConstraints={videoConstraints}
+          className="border-1 rounded-lg shadow-lg"
+          mirrored={false}
+          style={{
+            marginLeft: "auto",
+            marginRight: "auto",
+            left: 0,
+            right: 0,
+            textAlign: "center",
+            zIndex: 9,
+            width: 640,
+            height: 480,
+          }}
         />
         <Button
           onClick={capture}

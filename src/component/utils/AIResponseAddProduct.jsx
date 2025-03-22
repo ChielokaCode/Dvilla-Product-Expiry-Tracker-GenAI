@@ -14,11 +14,6 @@ const AIResponseAddProduct = ({ response }) => {
       return match ? match[1].trim().replace(/\s+/g, " ") : null; // Fix: Trim spaces properly
     };
 
-    // const extractFieldDate = (label) => {
-    //   const match = responseText.match(new RegExp(`${label}:\\s*(.+)`, "i"));
-    //   return match ? match[1].trim() : new Date();
-    // };
-
     const extractFieldDate = (label) => {
       const match = responseText.match(
         new RegExp(
