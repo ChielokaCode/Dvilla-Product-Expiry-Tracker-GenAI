@@ -320,7 +320,11 @@ const WebCapturebot = () => {
           style={{ width: 320, height: 240 }}
         />
 
-        {response && <AIResponseAddProduct response={response} />}
+        {response &&
+          response !== "Something went wrong. Please try again." &&
+          !response.includes("I'm unable to") && (
+            <AIResponseAddProduct response={response} />
+          )}
       </div>
 
       {/* Chat Area (Right) */}
