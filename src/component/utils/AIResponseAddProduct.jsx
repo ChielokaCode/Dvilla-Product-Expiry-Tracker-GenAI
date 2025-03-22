@@ -60,13 +60,13 @@ const AIResponseAddProduct = ({ response }) => {
     };
 
     return {
-      productName: extractField("Product Name"),
+      productName: extractField("Name"),
       productCategory: extractField("Category"),
       productDescription: extractField("Description"),
       productQuantity: 1, // Default quantity
       productBatchNo: extractField("Batch No"),
-      productManufactureDate: extractFieldDate("Manufacture Date (Mfg. Date)"),
-      productExpirationDate: extractFieldDate("Expiration Date (Exp. Date)"),
+      productManufactureDate: extractFieldDate("Mfg Date"),
+      productExpirationDate: extractFieldDate("Exp Date"),
       productShelfAddedDate: new Date().toISOString().split("T")[0], // Today
       createdDate: new Date().toISOString().split("T")[0],
       createdBy: "Admin",

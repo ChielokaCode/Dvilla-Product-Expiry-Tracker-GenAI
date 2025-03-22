@@ -271,8 +271,9 @@ const WebCapturebot = () => {
       const messages = [
         {
           role: "system",
-          content:
-            "You are an AI assistant helping extract product details from images and text.",
+          content: `You are a smart AI assistant that helps users extract product details from images.
+           If the extracted details are incomplete or unclear, keep asking the user for more information until all necessary details are obtained.
+           Ensure the final response contains complete product details like Name, Description, Category, Batch No, Mfg Date, and Exp Date.`,
         },
         ...newMessages,
       ];
@@ -318,6 +319,8 @@ const WebCapturebot = () => {
           mirrored={false}
           style={{ width: 320, height: 240 }}
         />
+
+        {response && <AIResponseAddProduct response={response} />}
       </div>
 
       {/* Chat Area (Right) */}
@@ -356,7 +359,7 @@ const WebCapturebot = () => {
         <div className="p-4 border-t bg-white flex items-center space-x-2">
           <Button
             onClick={capture}
-            className="bg-gray-300 text-black p-2 rounded-lg mt-2"
+            className="bg-gray-300 text-black p-2 rounded-lg"
           >
             <SvgIcon icon={cameraIcon} size="medium" />
           </Button>
@@ -376,8 +379,6 @@ const WebCapturebot = () => {
             {loading ? "Thinking..." : "Send"}
           </Button>
         </div>
-
-        {response && <AIResponseAddProduct response={response} />}
       </div>
     </div>
   );
