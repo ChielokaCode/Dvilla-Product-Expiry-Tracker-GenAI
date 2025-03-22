@@ -7,9 +7,9 @@ const EditProductPage = () => {
   const [show, setShow] = useState(true); // Controls Slide animation
 
   return (
-    <div className="flex">
+    <div className="flex flex-col">
       {/* Sidebar - Isolated from other styles */}
-      <div className="w-64 min-h-screen bg-gray-100 shadow-md">
+      <div>
         <SideBar />
       </div>
 
