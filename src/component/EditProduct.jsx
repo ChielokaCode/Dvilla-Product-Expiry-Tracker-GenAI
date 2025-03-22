@@ -8,6 +8,7 @@ import { Notification } from "@progress/kendo-react-notification";
 import { editProduct } from "./utils/generateProducts";
 import { useParams } from "react-router-dom";
 import { Button } from "@progress/kendo-react-buttons";
+import TextBox from "./TextBox";
 
 const EditProduct = () => {
   const { id } = useParams(); // Get the product ID from URL
@@ -24,10 +25,6 @@ const EditProduct = () => {
 
   const [selectedProduct, setSelectedProduct] = useState(null);
   const editorRef = React.useRef(null);
-
-  const handleFormat = (command) => {
-    document.execCommand(command, false, null);
-  };
 
   useEffect(() => {
     if (notifStatus) {
@@ -196,25 +193,14 @@ const EditProduct = () => {
             </div>
 
             {/* Product Description {TextArea} */}
-            <div>
-              <Label className="font-medium" editorId="productDescription">
-                Product Description&nbsp;
-              </Label>
-
-              {/* Kendo Toolbar */}
-              <ToolbarContainer onFormat={handleFormat} />
-
-              {/* Editable Content */}
-              <div
-                onChange={(e) => setProductDescription(e.target.value)}
-                id="productDescription"
-                name="productDescription"
-                ref={editorRef}
-                defaultValue={productDescription}
-                contentEditable="true"
-                className="mt-2 min-h-[100px] border border-gray-300 rounded-md px-3 py-2 text-gray-900 bg-white focus:outline-indigo-600"
-              ></div>
-            </div>
+            <TextBox
+              label={"Product Description"}
+              labelHtmlFor={"productDescription"}
+              id={"productDescription"}
+              name={"productDescription"}
+              onChange={(e) => setProductDescription(e.target.value)}
+              value={productDescription}
+            />
 
             {/* Product Batch Number */}
             <div className="col-12 col-md-6 example-col">

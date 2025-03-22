@@ -5,10 +5,11 @@ import { Input } from "@progress/kendo-react-inputs";
 import { useNavigate } from "react-router-dom";
 import { Notification } from "@progress/kendo-react-notification";
 import { Button } from "@progress/kendo-react-buttons";
+import { Card, CardBody } from "@progress/kendo-react-layout";
 
 const Login = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("user@gmail.com");
+  const [password, setPassword] = useState("1234");
   const [notifStatus, setNotifStatus] = useState(false);
   const [error, setError] = useState("");
   const navigate = useNavigate();
@@ -23,12 +24,49 @@ const Login = () => {
     }
   }, [notifStatus, navigate]);
 
+  // const loginUser = (e) => {
+  //   e.preventDefault();
+  //   setError(""); // Clear previous errors
+
+  //   let users = JSON.parse(localStorage.getItem("users")) || [];
+
+  //   const validUser = users.find(
+  //     (user) => user.email === email && user.password === password
+  //   );
+
+  //   if (validUser) {
+  //     sessionStorage.setItem("loggedInUser", JSON.stringify(validUser));
+  //     setNotifStatus(true); // Show success message
+  //   } else {
+  //     setError("Email or password incorrect.");
+  //   }
+  // };
+
   const loginUser = (e) => {
     e.preventDefault();
     setError(""); // Clear previous errors
 
     let users = JSON.parse(localStorage.getItem("users")) || [];
 
+    // Ensure default user exists in case it's missing
+    const defaultUserExists = users.some(
+      (user) => user.email === "user@gmail.com" && user.password === "1234"
+    );
+
+    if (!defaultUserExists) {
+      users.push({
+        id: 1,
+        firstName: "user",
+        lastName: "user",
+        email: "user@gmail.com",
+        country: "country",
+        password: "1234",
+        confirmPassword: "1234",
+      });
+      localStorage.setItem("users", JSON.stringify(users)); // Save updated users list
+    }
+
+    // Now check login credentials
     const validUser = users.find(
       (user) => user.email === email && user.password === password
     );
@@ -134,6 +172,14 @@ const Login = () => {
               Sign up here
             </Link>
           </p>
+
+          <div className="flex justify-center mt-3">
+            <Card style={{ width: 300 }} type="info" className="text-center">
+              <CardBody>
+                <h2 className="text-center">Use this as dummy Login</h2>
+              </CardBody>
+            </Card>
+          </div>
         </div>
       </div>
     </div>

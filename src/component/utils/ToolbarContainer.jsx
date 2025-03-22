@@ -24,19 +24,28 @@ const ToolbarContainer = ({ onFormat }) => {
           className="k-toolbar-button"
           svgIcon={boldIcon}
           title="Bold"
-          onClick={() => onFormat("bold")}
+          onClick={(e) => {
+            e.preventDefault(); // Prevent default behavior
+            onFormat("bold");
+          }}
         />
         <Button
           className="k-toolbar-button"
           svgIcon={italicIcon}
           title="Italic"
-          onClick={() => onFormat("italic")}
+          onClick={(e) => {
+            e.preventDefault(); // Prevent default behavior
+            onFormat("italic");
+          }}
         />
         <Button
           className="k-toolbar-button"
           svgIcon={underlineIcon}
           title="Underline"
-          onClick={() => onFormat("underline")}
+          onClick={(e) => {
+            e.preventDefault(); // Prevent default behavior
+            onFormat("underline");
+          }}
         />
       </ButtonGroup>
 
@@ -45,26 +54,38 @@ const ToolbarContainer = ({ onFormat }) => {
           className="k-toolbar-button"
           svgIcon={alignLeftIcon}
           title="Align Left"
-          onClick={() => onFormat("justifyleft")}
+          onClick={(e) => {
+            e.preventDefault(); // Prevent default behavior
+            onFormat("justifyleft");
+          }}
         />
         <Button
           className="k-toolbar-button"
           svgIcon={alignCenterIcon}
           title="Align Center"
-          onClick={() => onFormat("justifycenter")}
+          onClick={(e) => {
+            e.preventDefault(); // Prevent default behavior
+            onFormat("justifycenter");
+          }}
         />
         <Button
           className="k-toolbar-button"
           svgIcon={alignRightIcon}
           title="Align Right"
-          onClick={() => onFormat("justifyright")}
+          onClick={(e) => {
+            e.preventDefault(); // Prevent default behavior
+            onFormat("justifyright");
+          }}
         />
         <ToolbarSeparator />
         <Button
           className="k-toolbar-button"
           svgIcon={cutIcon}
           title="Cut"
-          onClick={() => onFormat("cut")}
+          onClick={(e) => {
+            e.preventDefault(); // Prevent default behavior
+            onFormat("cut");
+          }}
         >
           Cut
         </Button>
@@ -73,7 +94,10 @@ const ToolbarContainer = ({ onFormat }) => {
           className="k-toolbar-button"
           svgIcon={copyIcon}
           title="Copy"
-          onClick={() => onFormat("copy")}
+          onClick={(e) => {
+            e.preventDefault(); // Prevent default behavior
+            onFormat("copy");
+          }}
         >
           Copy
         </Button>

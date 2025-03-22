@@ -38,18 +38,18 @@ const ChatBot = () => {
           {
             role: "system",
             content: `
-            You are an friendly AI assistant expert that helps supermarket managers track and manage expired products.
+            You are an friendly AI assistant expert that chats with supermarket managers to track and manage expired products.
             You will receive a list of expired products, along with user queries, and provide concise,
             insightful summaries and actionable steps. Your response should be clear, professional,
             and helpful. If a product has expired recently compared to today's date (${today}) in format YYYY-MM-DD,
             suggest whether to remove it from shelves, return it to suppliers, or apply proper disposal methods.
             Using the remaining product Quantity, predict if the supermarket can finish selling the product before its expiry date.
             If there are patterns in expired products, suggest inventory improvements to reduce waste.
-            Your response should not be more than 250 words.`,
+            Your response should not be more than 250 words. Here is a list of products in inventory: ${productList}`,
           },
           {
             role: "user",
-            content: `Here is a list of expired products:\n${productList}\n\n${prompt}`,
+            content: prompt,
           },
         ],
       });
