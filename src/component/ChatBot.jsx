@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import OpenAI from "openai";
 import generateProducts from "./utils/generateProducts";
+import { Slide, Fade, Zoom } from "@progress/kendo-react-animation";
 
 const ChatBot = () => {
   const [input, setInput] = useState("");
@@ -88,22 +89,27 @@ const ChatBot = () => {
       {/* Chat Messages Container */}
       <div className="flex-1 overflow-y-auto p-4 space-y-2 bg-gray-100">
         {chatHistory.map((msg, index) => (
-          <div
-            key={index}
-            className={`flex ${
-              msg.role === "user" ? "justify-end" : "justify-start"
-            }`}
-          >
-            <div
-              className={`px-4 py-2 rounded-lg max-w-xs ${
-                msg.role === "user"
-                  ? "bg-blue-500 text-white"
-                  : "bg-gray-300 text-black"
-              }`}
-            >
-              {msg.content}
-            </div>
-          </div>
+          <Slide key={index} direction={msg.role === "user" ? "right" : "left"}>
+            <Fade transitionDuration={300 + index * 100}>
+              <Zoom transitionDuration={300} /* Adding bounce effect */>
+                <div
+                  className={`flex ${
+                    msg.role === "user" ? "justify-end" : "justify-start"
+                  } my-2`}
+                >
+                  <div
+                    className={`px-4 py-2 rounded-lg max-w-xs shadow-md transition-all duration-500 ${
+                      msg.role === "user"
+                        ? "bg-blue-500 text-white"
+                        : "bg-gray-300 text-black"
+                    }`}
+                  >
+                    {msg.content}
+                  </div>
+                </div>
+              </Zoom>
+            </Fade>
+          </Slide>
         ))}
         <div ref={chatEndRef} />
       </div>
