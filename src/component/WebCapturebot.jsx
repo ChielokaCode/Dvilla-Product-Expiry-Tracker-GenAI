@@ -219,7 +219,8 @@ import Webcam from "react-webcam";
 import OpenAI from "openai";
 import { Input } from "@progress/kendo-react-inputs";
 import { Button } from "@progress/kendo-react-buttons";
-import { Camera } from "lucide-react";
+import { SvgIcon } from "@progress/kendo-react-common";
+import * as svgIcons from "@progress/kendo-svg-icons";
 import AIResponseAddProduct from "./utils/AIResponseAddProduct";
 
 const WebCapturebot = () => {
@@ -326,7 +327,11 @@ const WebCapturebot = () => {
           onClick={capture}
           className="bg-gray-300 text-black p-2 rounded-lg"
         >
-          <Camera size={24} />
+          <SvgIcon
+            icon={{
+              name: "cameraIcon",
+            }}
+          />
         </Button>
         <Input
           type="text"
