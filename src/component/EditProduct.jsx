@@ -53,17 +53,17 @@ const EditProduct = () => {
         // Convert string dates to Date objects (handle invalid cases)
         setProductManufactureDate(
           productToEdit.productManufactureDate
-            ? productToEdit.productManufactureDate
+            ? new Date(productToEdit.productManufactureDate)
             : null
         );
         setProductExpiryDate(
           productToEdit.productExpirationDate
-            ? productToEdit.productExpirationDate
+            ? new Date(productToEdit.productExpirationDate)
             : null
         );
         setProductShelfDate(
           productToEdit.productShelfAddedDate
-            ? productToEdit.productShelfAddedDate
+            ? new Date(productToEdit.productShelfAddedDate)
             : null
         );
       }
@@ -77,6 +77,11 @@ const EditProduct = () => {
     }
   }, [id, handleEditProduct]); // Now React won't complain
 
+  const formatDate = (date) =>
+    date instanceof Date && !isNaN(date.getTime())
+      ? date.toISOString().split("T")[0] // Extract YYYY-MM-DD
+      : "";
+
   const handleUpdateProduct = (e) => {
     e.preventDefault();
     try {
@@ -89,9 +94,9 @@ const EditProduct = () => {
         productQuantity: Number(productQuantity),
         productDescription,
         productBatchNo,
-        productManufactureDate,
-        productExpirationDate: productExpiryDate,
-        productShelfAddedDate: productShelfDate,
+        productManufactureDate: formatDate(productManufactureDate),
+        productExpirationDate: formatDate(productExpiryDate),
+        productShelfAddedDate: formatDate(productShelfDate),
       };
 
       const success = editProduct(updatedProduct);
