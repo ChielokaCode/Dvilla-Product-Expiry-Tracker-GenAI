@@ -2,11 +2,12 @@ import React, { useState } from "react";
 import TextBox from "./TextBox";
 import generateProducts from "./utils/generateProducts";
 import { Button } from "@progress/kendo-react-buttons";
+
 import OpenAI from "openai";
 
 const ChatBot = () => {
   const [input, setInput] = useState("");
-  const [chatHistory, setChatHistory] = useState([]); // Stores conversation history
+  const [response, setResponse] = useState("");
   const [loading, setLoading] = useState(false);
   const products = generateProducts(); // Generate product data
 
@@ -17,78 +18,49 @@ const ChatBot = () => {
 
   const handleAskAI = async () => {
     setLoading(true);
-    const today = new Date().toISOString().split("T")[0]; // Get YYYY-MM-DD format
-
-    // Generate the product list
-    const productList = products
-      .map(
-        (item) =>
-          `${item.productName}, Qty: ${item.productQuantity} (expires on ${item.productExpirationDate})`
-      )
-      .join("\n");
-
-    // Set up the initial greeting if it's the first message
-    let messages = [];
-    if (chatHistory.length === 0) {
-      messages.push({
-        role: "system",
-        content: `
-          You are a friendly AI assistant helping supermarket managers track and manage inventory.
-          Start with a warm greeting if this is the user's first interaction.
-          Provide helpful and concise responses based on the product inventory below.
-          If the user asks about expired products, suggest whether to remove them, return to suppliers,
-          or apply proper disposal methods. Predict if the supermarket can sell a product before its expiry date.
-          If patterns in expired products exist, suggest inventory improvements.
-          Today's date: ${today}
-          Here is the current inventory:
-          ${productList}
-        `,
-      });
-
-      messages.push({
-        role: "assistant",
-        content: `Hello there! 😊 I'm your AI assistant here to help with your inventory. Ask me anything about your products!`,
-      });
-    }
-
-    // Include previous conversation history
-    messages = [...messages, ...chatHistory];
-
-    // Add the user's latest question
-    messages.push({
-      role: "user",
-      content:
-        input ||
-        "Give a summary of expired products. Format dates in human-readable sentences.",
-    });
-
+    const prompt =
+      input ||
+      "Give a summary of expired products. Let all date be in a human readable sentence";
     try {
+      // Format expired products
+      const productList = products
+        .map(
+          (item) =>
+            `${item.productName}, Qty: ${item.productQuantity} (expires on ${item.productExpirationDate})`
+        )
+        .join("\n");
+
+      const today = new Date().toISOString().split("T")[0]; // Get YYYY-MM-DD format
       // Call OpenAI API
       const completion = await client.chat.completions.create({
-        model: "gpt-4o-mini",
-        messages: messages,
+        model: "gpt-4.5-preview",
+        messages: [
+          {
+            role: "system",
+            content: `
+            You are an friendly AI assistant expert that chats with supermarket managers to track and manage expired products.
+            You will receive a list of expired products, along with user queries, and provide concise,
+            insightful summaries and actionable steps. Your response should be clear, professional,
+            and helpful. If a product has expired recently compared to today's date (${today}) in format YYYY-MM-DD,
+            suggest whether to remove it from shelves, return it to suppliers, or apply proper disposal methods.
+            Using the remaining product Quantity, predict if the supermarket can finish selling the product before its expiry date.
+            If there are patterns in expired products, suggest inventory improvements to reduce waste.
+            Here is a list of products in inventory: ${productList}`,
+          },
+          {
+            role: "user",
+            content: prompt,
+          },
+        ],
       });
 
       const textResponse =
         completion?.choices?.[0]?.message?.content || "No response from AI";
-
-      // Update chat history
-      const updatedHistory = [
-        ...messages,
-        { role: "assistant", content: textResponse },
-      ];
-      setChatHistory(updatedHistory);
+      setResponse(textResponse);
     } catch (error) {
       console.error("Error:", error);
-      setChatHistory([
-        ...messages,
-        {
-          role: "assistant",
-          content: "Something went wrong. Please try again.",
-        },
-      ]);
+      setResponse("Something went wrong. Please try again.");
     }
-
     setLoading(false);
   };
 
@@ -115,21 +87,18 @@ const ChatBot = () => {
         {loading ? "Thinking..." : "Ask AI"}
       </Button>
 
-      <div className="mt-4 p-3 bg-gray-100 border rounded whitespace-pre-line">
-        {chatHistory.map((msg, index) => (
-          <p
-            key={index}
-            className={
-              msg.role === "assistant"
-                ? "text-blue-700 font-semibold"
-                : "text-gray-800"
-            }
-          >
-            <strong>{msg.role === "assistant" ? "AI:" : "You:"}</strong>{" "}
-            {msg.content}
-          </p>
-        ))}
-      </div>
+      {response && typeof response === "string" && (
+        <div className="mt-4 p-3 bg-gray-100 border rounded whitespace-pre-line">
+          <strong>AI Response:</strong>
+          {response
+            .replace(/###\s*(.+)/g, "\n\n**$1**") // Convert ### headings to bold on a new line
+            .replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>") // Convert **bold** to HTML <strong>
+            .split("\n")
+            .map((line, index) => (
+              <p key={index} dangerouslySetInnerHTML={{ __html: line }} />
+            ))}
+        </div>
+      )}
     </div>
   );
 };
