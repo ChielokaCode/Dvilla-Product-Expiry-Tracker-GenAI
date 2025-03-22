@@ -88,16 +88,8 @@ const AddProduct = () => {
         </Notification>
       )}
 
-      <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
+      <div className="p-4 md:ml-64 ml-0 bg-gray-100">
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
-          {/* <img
-            alt="Your Company"
-            src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=600"
-            className="mx-auto h-10 w-auto"
-          />
-          <h4 className="mt-3 text-center text-2xl/9 font-bold tracking-tight text-gray-900">
-            D'Villa
-          </h4> */}
           <h2 className="mt-3 text-center text-2xl/9 font-bold tracking-tight text-gray-900">
             Add Product
           </h2>

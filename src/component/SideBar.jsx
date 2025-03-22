@@ -51,10 +51,21 @@ const SideBar = () => {
       current: false,
     },
     {
+      name: "Profile",
+      href: "/profile",
+      current: false,
+    },
+    {
+      name: "Chatbot",
+      href: "/chatbot",
+      current: false,
+    },
+    {
       name: "Logout",
       href: logoutUser,
       current: false,
     },
+
     // { name: "Inbox", href: "/dashboard/indox", current: false },
   ];
 
