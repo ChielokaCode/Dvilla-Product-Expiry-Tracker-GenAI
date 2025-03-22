@@ -12,9 +12,43 @@ const AIResponseAddProduct = ({ response }) => {
       const match = responseText.match(new RegExp(`${label}:\\s*(.+)`, "i"));
       return match ? match[1].trim() : null;
     };
+    // const extractFieldDate = (label) => {
+    //   const match = responseText.match(new RegExp(`${label}:\\s*(.+)`, "i"));
+    //   return match ? match[1].trim() : new Date();
+    // };
+
     const extractFieldDate = (label) => {
-      const match = responseText.match(new RegExp(`${label}:\\s*(.+)`, "i"));
-      return match ? match[1].trim() : new Date();
+      const match = responseText.match(
+        new RegExp(`${label}:\\s*(\\d{1,2})[/-](\\d{2})[/-]?(\\d{2,4})?`, "i")
+      );
+
+      if (match) {
+        let [_, part1, part2, part3] = match;
+
+        let day, month, year;
+
+        if (part3) {
+          // Format: DD/MM/YY or DD/MM/YYYY
+          day = part1;
+          month = part2;
+          year = part3.length === 2 ? `20${part3}` : part3;
+        } else {
+          // Format: MM/YY or MM-YY (Assume day = 01)
+          day = "01";
+          month = part1;
+          year = `20${part2}`;
+        }
+
+        // Format to YYYY-MM-DD for Date parsing
+        const formattedDate = `${year}-${month}-${day}`;
+        const date = new Date(formattedDate);
+
+        return isNaN(date.getTime())
+          ? new Date()
+          : date.toLocaleDateString("en-GB"); // Format as DD/MM/YYYY
+      }
+
+      return "Invalid Date"; // Return if no match found
     };
 
     return {
