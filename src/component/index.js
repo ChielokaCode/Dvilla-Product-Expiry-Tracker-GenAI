@@ -11,6 +11,7 @@ import SideBar from "./SideBar";
 import ChatBot from "./ChatBot";
 import Profile from "./Profile";
 import ProductProgressBar from "./ProductProgressBar";
+import WebCapturebot from "./WebCapturebot";
 
 export {
   Login,
@@ -24,4 +25,5 @@ export {
   ChatBot,
   Profile,
   ProductProgressBar,
+  WebCapturebot,
 };
