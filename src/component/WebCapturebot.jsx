@@ -307,7 +307,17 @@ const WebCapturebot = () => {
   };
 
   return (
-    <div className="flex flex-col h-screen max-w-lg mx-auto border rounded-lg shadow-lg">
+    <div className="flex flex-row h-screen max-w-lg mx-auto border rounded-lg shadow-lg">
+      <div>
+        <Webcam
+          ref={webcamRef}
+          screenshotFormat="image/jpeg"
+          videoConstraints={videoConstraints}
+          className="border-1 rounded-lg shadow-lg"
+          mirrored={false}
+          style={{ width: 320, height: 240 }}
+        />
+      </div>
       <div className="flex-1 overflow-y-auto p-4 space-y-2 bg-gray-100">
         {chatHistory.map((msg, index) => (
           <div
@@ -340,23 +350,6 @@ const WebCapturebot = () => {
       </div>
 
       <div className="p-4 border-t bg-white flex items-center space-x-2">
-        <Webcam
-          ref={webcamRef}
-          screenshotFormat="image/jpeg"
-          videoConstraints={videoConstraints}
-          className="border-1 rounded-lg shadow-lg"
-          mirrored={false}
-          style={{
-            marginLeft: "auto",
-            marginRight: "auto",
-            left: 0,
-            right: 0,
-            textAlign: "center",
-            zIndex: 9,
-            width: 640,
-            height: 480,
-          }}
-        />
         <Button
           onClick={capture}
           className="bg-gray-300 text-black p-2 rounded-lg"
