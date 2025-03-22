@@ -9,9 +9,11 @@ const AIResponseAddProduct = ({ response }) => {
   // Extract product details from AI response dynamically
   const extractProductDetails = (responseText) => {
     const extractField = (label) => {
-      const match = responseText.match(new RegExp(`${label}:\\s*(.+)`, "i"));
+      const regex = new RegExp(`\\*?\\*?${label}\\*?\\*?:\\s*(.+)`, "i");
+      const match = responseText.match(regex);
       return match ? match[1].trim() : null;
     };
+
     const extractFieldDate = (label) => {
       const match = responseText.match(new RegExp(`${label}:\\s*(.+)`, "i"));
       return match ? match[1].trim() : new Date();
