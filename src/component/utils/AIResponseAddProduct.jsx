@@ -9,11 +9,9 @@ const AIResponseAddProduct = ({ response }) => {
   // Extract product details from AI response dynamically
   const extractProductDetails = (responseText) => {
     const extractField = (label) => {
-      // Remove leading "** " (if present) from the label
       label = label.startsWith("** ") ? label.slice(2).trim() : label;
-
       const match = responseText.match(new RegExp(`${label}:\\s*(.+)`, "i"));
-      return match ? match[1].trim() : null;
+      return match ? match[1].trim().replace(/\s+/g, " ") : null; // Fix: Trim spaces properly
     };
 
     // const extractFieldDate = (label) => {
@@ -34,39 +32,36 @@ const AIResponseAddProduct = ({ response }) => {
         let year, month, day;
 
         if (part1.length === 4) {
-          // Format: YYYY/MM/DD or YYYY-MM-DD
           year = part1;
           month = part2;
-          day = part3 || "01"; // Default day to 01 if missing
+          day = part3 || "01";
         } else if (part3?.length === 4) {
-          // Format: DD/MM/YYYY or DD-MM-YYYY
           day = part1;
           month = part2;
           year = part3;
         } else if (part3?.length === 2) {
-          // Format: DD/MM/YY or DD-MM-YY
           day = part1;
           month = part2;
           year = `20${part3}`;
-        } else if (!part3) {
-          // Format: MM/YYYY, MM-YYYY, MM/YY, MM-YY (Assume day = 01)
+        } else {
           day = "01";
           month = part1;
           year = part2.length === 4 ? part2 : `20${part2}`;
-        } else {
-          return new Date();
         }
 
-        // Format to YYYY-MM-DD for Date parsing
+        // 🛠 Fix: Ensure month and day are always two digits
+        month = month.padStart(2, "0");
+        day = day.padStart(2, "0");
+
         const formattedDate = `${year}-${month}-${day}`;
         const date = new Date(formattedDate);
 
         return isNaN(date.getTime())
           ? new Date()
-          : date.toLocaleDateString("en-GB"); // Format as DD/MM/YYYY
+          : date.toLocaleDateString("en-GB");
       }
 
-      return new Date().toISOString().split("T")[0]; // Return if no match found
+      return new Date().toISOString().split("T")[0];
     };
 
     return {
@@ -75,8 +70,8 @@ const AIResponseAddProduct = ({ response }) => {
       productDescription: extractField("Description"),
       productQuantity: 1, // Default quantity
       productBatchNo: extractField("Batch No"),
-      productManufactureDate: extractFieldDate("Manufacture Date"),
-      productExpirationDate: extractFieldDate("Expiration Date"),
+      productManufactureDate: extractFieldDate("Manufacture Date (Mfg. Date)"),
+      productExpirationDate: extractFieldDate("Expiration Date (Exp. Date)"),
       productShelfAddedDate: new Date().toISOString().split("T")[0], // Today
       createdDate: new Date().toISOString().split("T")[0],
       createdBy: "Admin",
@@ -87,6 +82,11 @@ const AIResponseAddProduct = ({ response }) => {
 
   // Function to handle adding the product
   const handleAddProduct = () => {
+    if (!response || typeof response !== "string") {
+      setError("Invalid AI response");
+      setNotifStatus(false);
+      return;
+    }
     try {
       const newProduct = extractProductDetails(response);
       addProduct(newProduct);
