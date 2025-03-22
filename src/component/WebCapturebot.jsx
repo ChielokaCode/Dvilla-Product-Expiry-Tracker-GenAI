@@ -307,8 +307,9 @@ const WebCapturebot = () => {
   };
 
   return (
-    <div className="flex flex-row h-screen max-w-lg mx-auto border rounded-lg shadow-lg">
-      <div>
+    <div className="flex flex-row h-screen max-w-4xl mx-auto border rounded-lg shadow-lg">
+      {/* Webcam Area (Left) */}
+      <div className="flex flex-col items-center p-4 bg-white border-r">
         <Webcam
           ref={webcamRef}
           screenshotFormat="image/jpeg"
@@ -318,61 +319,66 @@ const WebCapturebot = () => {
           style={{ width: 320, height: 240 }}
         />
       </div>
-      <div className="flex-1 overflow-y-auto p-4 space-y-2 bg-gray-100">
-        {chatHistory.map((msg, index) => (
-          <div
-            key={index}
-            className={`flex ${
-              msg.role === "user" ? "justify-end" : "justify-start"
-            } my-2`}
-          >
-            <div
-              className={`px-4 py-2 rounded-lg max-w-xs shadow-md ${
-                msg.role === "user"
-                  ? "bg-blue-500 text-white"
-                  : "bg-gray-300 text-black"
-              }`}
-            >
-              {/* Check if message is image */}
-              {msg.type === "image" ? (
-                <img
-                  src={msg.content}
-                  alt="Captured"
-                  className="rounded-lg w-full"
-                />
-              ) : (
-                msg.content
-              )}
-            </div>
-          </div>
-        ))}
-        <div ref={chatEndRef} />
-      </div>
 
-      <div className="p-4 border-t bg-white flex items-center space-x-2">
-        <Button
-          onClick={capture}
-          className="bg-gray-300 text-black p-2 rounded-lg"
-        >
-          <SvgIcon icon={cameraIcon} size="medium" />
-        </Button>
-        <Input
-          type="text"
-          className="flex-1 border rounded-lg p-2"
-          placeholder="Ask AI something..."
-          value={input}
-          onChange={(e) => setInput(e.target.value)}
-          onKeyDown={(e) => e.key === "Enter" && handleAskAI()}
-        />
-        <Button
-          onClick={handleAskAI}
-          className="px-4 py-2 bg-blue-500 text-white rounded-lg"
-          disabled={loading}
-        >
-          {loading ? "Thinking..." : "Send"}
-        </Button>
+      {/* Chat Area (Right) */}
+      <div className="flex flex-col flex-1 overflow-hidden">
+        <div className="flex-1 overflow-y-auto p-4 space-y-2 bg-gray-100">
+          {chatHistory.map((msg, index) => (
+            <div
+              key={index}
+              className={`flex ${
+                msg.role === "user" ? "justify-end" : "justify-start"
+              } my-2`}
+            >
+              <div
+                className={`px-4 py-2 rounded-lg max-w-xs shadow-md ${
+                  msg.role === "user"
+                    ? "bg-blue-500 text-white"
+                    : "bg-gray-300 text-black"
+                }`}
+              >
+                {msg.type === "image" ? (
+                  <img
+                    src={msg.content}
+                    alt="Captured"
+                    className="rounded-lg w-full"
+                  />
+                ) : (
+                  msg.content
+                )}
+              </div>
+            </div>
+          ))}
+          <div ref={chatEndRef} />
+        </div>
+
+        {/* Input Section */}
+        <div className="p-4 border-t bg-white flex items-center space-x-2">
+          <Button
+            onClick={capture}
+            className="bg-gray-300 text-black p-2 rounded-lg mt-2"
+          >
+            <SvgIcon icon={cameraIcon} size="medium" />
+          </Button>
+          <Input
+            type="text"
+            className="flex-1 border rounded-lg p-2"
+            placeholder="Ask AI something..."
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+            onKeyDown={(e) => e.key === "Enter" && handleAskAI()}
+          />
+          <Button
+            onClick={handleAskAI}
+            className="px-4 py-2 bg-blue-500 text-white rounded-lg"
+            disabled={loading}
+          >
+            {loading ? "Thinking..." : "Send"}
+          </Button>
+        </div>
+
+        {response && <AIResponseAddProduct response={response} />}
       </div>
-      {response && <AIResponseAddProduct response={response} />}
     </div>
   );
 };
