@@ -89,14 +89,15 @@ const ChatBot = () => {
       {/* Chat Messages Container */}
       <div className="flex-1 overflow-y-auto p-4 space-y-2 bg-gray-100">
         {chatHistory.map((msg, index) => (
-          <Slide key={index} direction={msg.role === "user" ? "right" : "left"}>
-            <Fade transitionDuration={300 + index * 100}>
-              <Zoom transitionDuration={300} /* Adding bounce effect */>
-                <div
-                  className={`flex ${
-                    msg.role === "user" ? "justify-end" : "justify-start"
-                  } my-2`}
-                >
+          <div
+            key={index}
+            className={`flex ${
+              msg.role === "user" ? "justify-end" : "justify-start"
+            } my-2`}
+          >
+            <Slide direction={msg.role === "user" ? "right" : "left"}>
+              <Fade>
+                <Zoom direction="up">
                   <div
                     className={`px-4 py-2 rounded-lg max-w-xs shadow-md transition-all duration-500 ${
                       msg.role === "user"
@@ -106,10 +107,10 @@ const ChatBot = () => {
                   >
                     {msg.content}
                   </div>
-                </div>
-              </Zoom>
-            </Fade>
-          </Slide>
+                </Zoom>
+              </Fade>
+            </Slide>
+          </div>
         ))}
         <div ref={chatEndRef} />
       </div>
