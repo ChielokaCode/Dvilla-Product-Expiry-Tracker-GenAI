@@ -9,9 +9,13 @@ const AIResponseAddProduct = ({ response }) => {
   // Extract product details from AI response dynamically
   const extractProductDetails = (responseText) => {
     const extractField = (label) => {
+      // Remove leading "**" from the label if present
+      label = label.replace(/^\*\*/, "").trim();
+
       const match = responseText.match(new RegExp(`${label}:\\s*(.+)`, "i"));
       return match ? match[1].trim() : null;
     };
+
     // const extractFieldDate = (label) => {
     //   const match = responseText.match(new RegExp(`${label}:\\s*(.+)`, "i"));
     //   return match ? match[1].trim() : new Date();
@@ -19,24 +23,38 @@ const AIResponseAddProduct = ({ response }) => {
 
     const extractFieldDate = (label) => {
       const match = responseText.match(
-        new RegExp(`${label}:\\s*(\\d{1,2})[/-](\\d{2})[/-]?(\\d{2,4})?`, "i")
+        new RegExp(
+          `${label}(?:\\s*\\(.*?\\))?:\\s*(\\d{2,4})[/-](\\d{1,2})[/-]?(\\d{0,4})?`,
+          "i"
+        )
       );
 
       if (match) {
         let [_, part1, part2, part3] = match;
+        let year, month, day;
 
-        let day, month, year;
-
-        if (part3) {
-          // Format: DD/MM/YY or DD/MM/YYYY
+        if (part1.length === 4) {
+          // Format: YYYY/MM/DD or YYYY-MM-DD
+          year = part1;
+          month = part2;
+          day = part3 || "01"; // Default day to 01 if missing
+        } else if (part3?.length === 4) {
+          // Format: DD/MM/YYYY or DD-MM-YYYY
           day = part1;
           month = part2;
-          year = part3.length === 2 ? `20${part3}` : part3;
-        } else {
-          // Format: MM/YY or MM-YY (Assume day = 01)
+          year = part3;
+        } else if (part3?.length === 2) {
+          // Format: DD/MM/YY or DD-MM-YY
+          day = part1;
+          month = part2;
+          year = `20${part3}`;
+        } else if (!part3) {
+          // Format: MM/YYYY, MM-YYYY, MM/YY, MM-YY (Assume day = 01)
           day = "01";
           month = part1;
-          year = `20${part2}`;
+          year = part2.length === 4 ? part2 : `20${part2}`;
+        } else {
+          return new Date();
         }
 
         // Format to YYYY-MM-DD for Date parsing
@@ -48,7 +66,7 @@ const AIResponseAddProduct = ({ response }) => {
           : date.toLocaleDateString("en-GB"); // Format as DD/MM/YYYY
       }
 
-      return "Invalid Date"; // Return if no match found
+      return new Date().toISOString().split("T")[0]; // Return if no match found
     };
 
     return {
