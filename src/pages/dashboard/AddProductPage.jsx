@@ -9,7 +9,7 @@ const EditProductPage = () => {
   return (
     <div className="flex">
       {/* Sidebar - Isolated from other styles */}
-      <div className="w-64 min-h-screen bg-gray-100 shadow-md">
+      <div>
         <SideBar />
       </div>
 
