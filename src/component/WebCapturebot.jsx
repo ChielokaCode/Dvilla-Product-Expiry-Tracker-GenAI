@@ -262,8 +262,10 @@ const WebCapturebot = () => {
   const handleAskAI = async () => {
     if (!input.trim() && !imgSrc) return;
     setLoading(true);
+    const prompt =
+      input || "Extract Product Name, Description, Mfg Date, Exp Date";
 
-    const newMessages = [...chatHistory, { role: "user", content: input }];
+    const newMessages = [...chatHistory, { role: "user", content: prompt }];
     setChatHistory(newMessages);
     setInput("");
 
@@ -271,9 +273,7 @@ const WebCapturebot = () => {
       const messages = [
         {
           role: "system",
-          content: `You are a smart AI assistant that helps users extract product details from images.
-           If the extracted details are incomplete or unclear, keep asking the user for more information until all necessary details are obtained.
-           Ensure the final response contains product details like "Product Name", "Description", "Mfg Date" and "Exp Date" explicitly.`,
+          content: `Extract Product Name, Description, Mfg Date, Exp Date`,
         },
         ...newMessages,
       ];

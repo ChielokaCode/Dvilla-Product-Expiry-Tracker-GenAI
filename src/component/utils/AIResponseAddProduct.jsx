@@ -6,39 +6,21 @@ const AIResponseAddProduct = ({ response }) => {
   const [notifStatus, setNotifStatus] = useState(false);
   const [error, setError] = useState(null);
 
-  const extractProductName = (response) => {
-    const regex = /(?:Product Name|Name):\s*(.+)/i;
-    const match = response.match(regex);
-    return match ? match[1].trim() : "";
-  };
-
-  const extractManufacturingDate = (response) => {
-    const regex =
-      /(?:Mfg Date|Manufacture Date):\s*(\d{4}[-\/]?\d{2}[-\/]?\d{2})\b/i;
-    const match = response.match(regex);
-    return match ? new Date(match[1].trim()) : null;
-  };
-
-  const extractExpirationDate = (response) => {
-    const regex =
-      /(?:Exp Date|Expiration Date):\s*(\d{4}[-\/]?\d{2}[-\/]?\d{2})\b/i;
-    const match = response.match(regex);
-    return match ? new Date(match[1].trim()) : null;
-  };
-
-  const extractDescription = (response) => {
-    const regex = /(?:Description):\s*(.+)/i;
-    const match = response.match(regex);
-    return match ? match[1].trim() : "";
-  };
-
   // Extract product details from AI response dynamically
   const extractProductDetails = (responseText) => {
+    const extractField = (label) => {
+      const match = responseText.match(new RegExp(`${label}:\\s*(.+)`, "i"));
+      return match ? match[1].trim() : null;
+    };
+    const extractFieldDate = (label) => {
+      const match = responseText.match(new RegExp(`${label}:\\s*(.+)`, "i"));
+      return match ? match[1].trim() : new Date();
+    };
     return {
-      productName: extractProductName(responseText),
-      productDescription: extractDescription(responseText),
-      productManufactureDate: extractManufacturingDate(responseText),
-      productExpirationDate: extractExpirationDate(responseText),
+      productName: extractField("Product Name"),
+      productDescription: extractField("Description"),
+      productManufactureDate: extractFieldDate("Mfg Date"),
+      productExpirationDate: extractFieldDate("Exp Date"),
       productShelfAddedDate: new Date(), // Today
       createdDate: new Date(),
       createdBy: "Admin",
@@ -49,11 +31,6 @@ const AIResponseAddProduct = ({ response }) => {
 
   // Function to handle adding the product
   const handleAddProduct = () => {
-    if (!response || typeof response !== "string") {
-      setError("Invalid AI response");
-      setNotifStatus(false);
-      return;
-    }
     try {
       const newProduct = extractProductDetails(response);
       addProduct(newProduct);
