@@ -77,11 +77,6 @@ const EditProduct = () => {
     }
   }, [id, handleEditProduct]); // Now React won't complain
 
-  const formatDate = (date) =>
-    date instanceof Date && !isNaN(date.getTime())
-      ? date.toISOString().split("T")[0] // Extract YYYY-MM-DD
-      : "";
-
   const handleUpdateProduct = (e) => {
     e.preventDefault();
     try {
@@ -94,9 +89,9 @@ const EditProduct = () => {
         productQuantity: Number(productQuantity),
         productDescription,
         productBatchNo,
-        productManufactureDate: formatDate(productManufactureDate),
-        productExpirationDate: formatDate(productExpiryDate),
-        productShelfAddedDate: formatDate(productShelfDate),
+        productManufactureDate: productManufactureDate,
+        productExpirationDate: productExpiryDate,
+        productShelfAddedDate: productShelfDate,
       };
 
       const success = editProduct(updatedProduct);
@@ -231,7 +226,7 @@ const EditProduct = () => {
                   name="productManufactureDate"
                   className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm"
                   value={productManufactureDate || null}
-                  onChange={(e) => setProductManufactureDate(e.target.value)}
+                  onChange={(e) => setProductManufactureDate(e.value)}
                 />
               </div>
             </div>
@@ -247,7 +242,7 @@ const EditProduct = () => {
                   name="productExpiryDate"
                   className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm"
                   value={productExpiryDate || null}
-                  onChange={(e) => setProductExpiryDate(e.target.value)}
+                  onChange={(e) => setProductExpiryDate(e.value)}
                 />
               </div>
             </div>
@@ -263,7 +258,7 @@ const EditProduct = () => {
                   name="productShelfDate"
                   className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm"
                   value={productShelfDate || null}
-                  onChange={(e) => setProductShelfDate(e.target.value)}
+                  onChange={(e) => setProductShelfDate(e.value)}
                 />
               </div>
             </div>

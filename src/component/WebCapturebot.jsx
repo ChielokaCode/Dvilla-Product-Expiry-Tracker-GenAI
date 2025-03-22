@@ -273,7 +273,7 @@ const WebCapturebot = () => {
           role: "system",
           content: `You are a smart AI assistant that helps users extract product details from images.
            If the extracted details are incomplete or unclear, keep asking the user for more information until all necessary details are obtained.
-           Ensure the final response contains complete product details like Name, Description, Category, Batch No, Mfg Date, and Exp Date.`,
+           Ensure the final response contains complete product details like Name, Description, Category, Batch No, Mfg Date, and Exp Date. The Mfg Date and Exp Date should output in this Date format YYYY-MM-DD`,
         },
         ...newMessages,
       ];

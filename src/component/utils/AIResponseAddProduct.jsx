@@ -6,68 +6,28 @@ const AIResponseAddProduct = ({ response }) => {
   const [notifStatus, setNotifStatus] = useState(false);
   const [error, setError] = useState(null);
 
+  const extractField = (fieldName, response) => {
+    const regex = new RegExp(`-\\s*${fieldName}:\\s*(.*)`, "i");
+    const match = response.match(regex);
+    return match ? match[1].trim() : "";
+  };
+
+  const extractFieldDate = (fieldName, response) => {
+    const value = extractField(fieldName, response);
+    return value ? new Date(value) : null; // Return Date object
+  };
+
   // Extract product details from AI response dynamically
   const extractProductDetails = (responseText) => {
-    const extractField = (label) => {
-      label = label.startsWith("** ") ? label.slice(2).trim() : label;
-      const match = responseText.match(new RegExp(`${label}:\\s*(.+)`, "i"));
-      return match ? match[1].trim().replace(/\s+/g, " ") : null; // Fix: Trim spaces properly
-    };
-
-    const extractFieldDate = (label) => {
-      const match = responseText.match(
-        new RegExp(
-          `${label}(?:\\s*\\(.*?\\))?:\\s*(\\d{2,4})[/-](\\d{1,2})[/-]?(\\d{0,4})?`,
-          "i"
-        )
-      );
-
-      if (match) {
-        let [_, part1, part2, part3] = match;
-        let year, month, day;
-
-        if (part1.length === 4) {
-          year = part1;
-          month = part2;
-          day = part3 || "01";
-        } else if (part3?.length === 4) {
-          day = part1;
-          month = part2;
-          year = part3;
-        } else if (part3?.length === 2) {
-          day = part1;
-          month = part2;
-          year = `20${part3}`;
-        } else {
-          day = "01";
-          month = part1;
-          year = part2.length === 4 ? part2 : `20${part2}`;
-        }
-
-        // 🛠 Fix: Ensure month and day are always two digits
-        month = month.padStart(2, "0");
-        day = day.padStart(2, "0");
-
-        const formattedDate = `${year}-${month}-${day}`;
-        const date = new Date(formattedDate);
-
-        return isNaN(date.getTime())
-          ? new Date()
-          : date.toLocaleDateString("en-GB");
-      }
-
-      return new Date().toISOString().split("T")[0];
-    };
-
     return {
-      productName: extractField("Name"),
-      productCategory: extractField("Category"),
-      productDescription: extractField("Description"),
+      productName: extractField("Name", responseText),
+      productCategory: extractField("Category", responseText),
+      productDescription: extractField("Description", responseText),
       productQuantity: 1, // Default quantity
-      productBatchNo: extractField("Batch No"),
-      productManufactureDate: extractFieldDate("Mfg Date"),
-      productExpirationDate: extractFieldDate("Exp Date"),
-      productShelfAddedDate: new Date().toISOString().split("T")[0], // Today
+      productBatchNo: extractField("Batch No", responseText),
+      productManufactureDate: extractFieldDate("Mfg Date", responseText),
+      productExpirationDate: extractFieldDate("Exp Date", responseText),
+      productShelfAddedDate: new Date(), // Today
       createdDate: new Date().toISOString().split("T")[0],
       createdBy: "Admin",
       modifiedBy: null,
