@@ -20,11 +20,8 @@ const AIResponseAddProduct = ({ response }) => {
   // Extract product details from AI response dynamically
   const extractProductDetails = (responseText) => {
     return {
-      productName: extractField("Name", responseText),
-      productCategory: extractField("Category", responseText),
+      productName: extractField("Product Name", responseText),
       productDescription: extractField("Description", responseText),
-      productQuantity: 1, // Default quantity
-      productBatchNo: extractField("Batch No", responseText),
       productManufactureDate: extractFieldDate("Mfg Date", responseText),
       productExpirationDate: extractFieldDate("Exp Date", responseText),
       productShelfAddedDate: new Date(), // Today
