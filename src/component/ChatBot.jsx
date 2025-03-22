@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import OpenAI from "openai";
 import generateProducts from "./utils/generateProducts";
-import { Expand, Slide } from "@progress/kendo-react-animation";
 
 const ChatBot = () => {
   const [input, setInput] = useState("");
@@ -88,25 +87,23 @@ const ChatBot = () => {
     <div className="flex flex-col h-screen max-w-lg mx-auto border rounded-lg shadow-lg">
       {/* Chat Messages Container */}
       <div className="flex-1 overflow-y-auto p-4 space-y-2 bg-gray-100">
-        import {Slide} from "@progress/kendo-react-animation";
         {chatHistory.map((msg, index) => (
-          <Slide key={index} direction={msg.role === "user" ? "right" : "left"}>
+          <div
+            key={index}
+            className={`flex ${
+              msg.role === "user" ? "justify-end" : "justify-start"
+            }`}
+          >
             <div
-              className={`flex ${
-                msg.role === "user" ? "justify-end" : "justify-start"
+              className={`px-4 py-2 rounded-lg max-w-xs ${
+                msg.role === "user"
+                  ? "bg-blue-500 text-white"
+                  : "bg-gray-300 text-black"
               }`}
             >
-              <div
-                className={`px-4 py-2 rounded-lg max-w-xs ${
-                  msg.role === "user"
-                    ? "bg-blue-500 text-white"
-                    : "bg-gray-300 text-black"
-                }`}
-              >
-                {msg.content}
-              </div>
+              {msg.content}
             </div>
-          </Slide>
+          </div>
         ))}
         <div ref={chatEndRef} />
       </div>
