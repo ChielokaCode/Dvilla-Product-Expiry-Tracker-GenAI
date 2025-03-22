@@ -308,7 +308,7 @@ const WebCapturebot = () => {
   };
 
   return (
-    <div className="flex flex-row h-screen max-w-4xl mx-auto border rounded-lg shadow-lg">
+    <div className="flex flex-row h-screen max-w-6xl mx-auto border rounded-lg shadow-lg">
       {/* Webcam Area (Left) */}
       <div className="flex flex-col items-center p-4 bg-white border-r">
         <Webcam
