@@ -92,16 +92,16 @@ const WebCapturebot = () => {
   };
 
   return (
-    <div className="flex flex-row h-screen max-w-4xl mx-auto border rounded-lg shadow-lg">
+    <div className="flex flex-col sm:flex-row h-screen max-w-4xl mx-auto border rounded-lg shadow-lg">
       {/* Webcam Area (Left) */}
-      <div className="flex flex-col items-center p-4 bg-white border-r w-[400px] sm:w-[200px]">
+      <div className="flex flex-col items-center p-4 bg-white border-b sm:border-r w-full sm:w-[200px]">
         <Webcam
           ref={webcamRef}
           screenshotFormat="image/jpeg"
           videoConstraints={videoConstraints}
-          className="border-1 rounded-lg shadow-lg w-[320px] h-[240px]"
+          className="border-1 rounded-lg shadow-lg"
           mirrored={false}
-          // style={{ width: 320, height: 240 }}
+          style={{ width: "100%", maxWidth: 320, height: 240 }}
         />
 
         {response &&
