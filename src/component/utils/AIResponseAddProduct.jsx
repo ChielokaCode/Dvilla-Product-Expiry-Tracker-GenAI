@@ -9,8 +9,8 @@ const AIResponseAddProduct = ({ response }) => {
   // Extract product details from AI response dynamically
   const extractProductDetails = (responseText) => {
     const extractField = (label) => {
-      // Remove leading "**" from the label if present
-      label = label.replace(/^\*\*/, "").trim();
+      // Remove leading "** " (if present) from the label
+      label = label.startsWith("** ") ? label.slice(2).trim() : label;
 
       const match = responseText.match(new RegExp(`${label}:\\s*(.+)`, "i"));
       return match ? match[1].trim() : null;

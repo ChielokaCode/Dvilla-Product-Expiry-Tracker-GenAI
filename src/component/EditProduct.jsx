@@ -53,23 +53,17 @@ const EditProduct = () => {
         // Convert string dates to Date objects (handle invalid cases)
         setProductManufactureDate(
           productToEdit.productManufactureDate
-            ? new Date(productToEdit.productManufactureDate)
-                .toISOString()
-                .split("T")[0]
+            ? productToEdit.productManufactureDate
             : null
         );
         setProductExpiryDate(
           productToEdit.productExpirationDate
-            ? new Date(productToEdit.productExpirationDate)
-                .toISOString()
-                .split("T")[0]
+            ? productToEdit.productExpirationDate
             : null
         );
         setProductShelfDate(
           productToEdit.productShelfAddedDate
-            ? new Date(productToEdit.productShelfAddedDate)
-                .toISOString()
-                .split("T")[0]
+            ? productToEdit.productShelfAddedDate
             : null
         );
       }
