@@ -72,7 +72,8 @@ const AIResponseAddProduct = ({ response }) => {
       {/* Add Product Button */}
       {response &&
         response !== "Something went wrong. Please try again." &&
-        !response.includes("I'm unable to") && (
+        !response.includes("I'm unable to") &&
+        response.includes("Product Name") && (
           <Button
             onClick={handleAddProduct}
             themeColor={"info"}
