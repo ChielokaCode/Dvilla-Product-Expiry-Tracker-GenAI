@@ -9,12 +9,11 @@ const EditProductPage = () => {
   return (
     <div className="flex flex-col">
       {/* Sidebar - Isolated from other styles */}
-      <div className="w-64">
+      <div>
         <SideBar />
       </div>
 
       {/* Main Content Area */}
-
       <AnimateButton
         show={show}
         setShow={setShow}
