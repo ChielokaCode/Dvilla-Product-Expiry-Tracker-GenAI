@@ -6,32 +6,31 @@ const AIResponseAddProduct = ({ response }) => {
   const [notifStatus, setNotifStatus] = useState(false);
   const [error, setError] = useState(null);
 
-  // Extract product details from AI response dynamically
-  const extractProductDetails = (responseText) => {
-    const extractField = (label) => {
-      const regex = new RegExp(`\\*?\\*?${label}\\*?\\*?:\\s*(.+)`, "i");
-      const match = responseText.match(regex);
-      return match ? match[1].trim() : null;
+  const extractProductDetails = (response) => {
+    if (!response) return null;
+
+    const lines = response.split("\n").map((line) => line.trim()); // Convert response into an array of lines
+
+    const getValue = (label) => {
+      const line = lines.find((l) =>
+        l.toLowerCase().includes(label.toLowerCase())
+      );
+      if (!line) return null;
+
+      const parts = line.split(":");
+      let value = parts.length > 1 ? parts.slice(1).join(":").trim() : null;
+
+      return value ? value.replace(/\*\*/g, "").trim() : null; // Remove ** formatting
     };
 
-    const extractFieldDate = (label) => {
-      const match = responseText.match(new RegExp(`${label}:\\s*(.+)`, "i"));
-      return match ? match[1].trim() : new Date();
-    };
-
-    const extractExpirationDate = (response) => {
-      const regex = /(?:Exp Date|Expiration Date):\s*([\d/-]+)/i;
-      const match = response.match(regex);
-      return match ? new Date(match[1].trim()) : null;
-    };
     return {
-      productName: extractField("Product Name"),
-      productCategory: extractField("Category"),
-      productDescription: extractField("Description"),
+      productName: getValue("Product Name"),
+      productCategory: getValue("Category"),
+      productDescription: getValue("Description"),
       productQuantity: 1, // Default quantity
-      productBatchNo: extractField("Batch No"),
-      productManufactureDate: extractFieldDate("Manufacture Date"),
-      productExpirationDate: extractExpirationDate(responseText),
+      productBatchNo: getValue("Batch No"),
+      productManufactureDate: getValue("Mfg Date"),
+      productExpirationDate: getValue("Exp Date"),
       createdDate: new Date(),
       createdBy: "Admin",
       modifiedBy: null,
@@ -43,6 +42,10 @@ const AIResponseAddProduct = ({ response }) => {
   const handleAddProduct = () => {
     try {
       const newProduct = extractProductDetails(response);
+      if (!newProduct || !newProduct.productName) {
+        throw new Error("Invalid product details");
+      }
+
       addProduct(newProduct);
       setNotifStatus(true);
       setError(null);
@@ -56,13 +59,9 @@ const AIResponseAddProduct = ({ response }) => {
     <div className="mt-4 p-3 bg-gray-100 border rounded">
       <strong>AI Response:</strong>
       <div className="whitespace-pre-line">
-        {response
-          .replace(/###\s*(.+)/g, "\n\n**$1**") // Convert ### headings to bold on a new line
-          .replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>") // Convert **bold** to HTML <strong>
-          .split("\n")
-          .map((line, index) => (
-            <p key={index} dangerouslySetInnerHTML={{ __html: line }} />
-          ))}
+        {response.split("\n").map((line, index) => (
+          <p key={index}>{line}</p>
+        ))}
       </div>
 
       {/* Add Product Button */}
