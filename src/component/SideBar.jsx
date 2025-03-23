@@ -17,21 +17,20 @@ const SideBar = () => {
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
-  // useEffect(() => {
-  //   if (notifStatus) {
-  //     const timer = setTimeout(() => {
-  //       setNotifStatus(false);
-  //       navigate("/");
-  //     }, 3000);
-  //     return () => clearTimeout(timer);
-  //   }
-  // }, [notifStatus, navigate]);
+  useEffect(() => {
+    if (notifStatus) {
+      const timer = setTimeout(() => {
+        setNotifStatus(false);
+        navigate("/");
+      }, 3000);
+      return () => clearTimeout(timer);
+    }
+  }, [notifStatus, navigate]);
 
   const logoutUser = () => {
     try {
       sessionStorage.removeItem("loggedInUser");
       setNotifStatus(true);
-      navigate("/");
     } catch (e) {
       setError("Error while Logging out");
     }
