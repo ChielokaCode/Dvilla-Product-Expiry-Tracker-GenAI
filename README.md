@@ -20,8 +20,7 @@ The project integrates AI to give summaries of product details in the inventory,
 A key feature is the expiration products page, which lists products nearing expiration within two months or more, helping customers track items close to expiry. This page uses Kendo React grid components with pagination and filtering options. Users can print and export product lists as PDFs, selecting specific columns via checkboxes.
 
 ## Video DEMO
-
-{% embed https://www.youtube.com/watch?v=NYMsXZHOEPI %}
+[![Product Expiry Tracker AI](https://img.youtube.com/vi/NYMsXZHOEPI/hqdefault.jpg)](https://youtu.be/NYMsXZHOEPI)
 
 ## App Screenshots
 
