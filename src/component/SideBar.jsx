@@ -11,11 +11,13 @@ import { SvgIcon } from "@progress/kendo-react-common";
 import { Notification } from "@progress/kendo-react-notification";
 import { useNavigate } from "react-router-dom";
 import ChatbotFloatingButton from "./ChatbotFloatingButton";
+import { useLocation } from "react-router-dom";
 
 const SideBar = () => {
   const [notifStatus, setNotifStatus] = useState(false);
   const [error, setError] = useState("");
   const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     if (notifStatus) {
@@ -37,36 +39,28 @@ const SideBar = () => {
   };
 
   const navigation = [
-    { name: "Add Product", href: "/dashboard/addProduct", current: true },
-    // { name: "Edit Product", href: "/dashboard/editProduct", current: false },
-    { name: "Show Products", href: "/dashboard/showProduct", current: false },
+    { name: "Add Product", href: "/dashboard/addProduct" },
+    { name: "Show Products", href: "/dashboard/showProduct" },
     {
       name: "Expiry Products",
       href: "/dashboard/closeToExpiry",
-      current: false,
     },
     {
       name: "Scan Product",
       href: "/dashboard/scanProduct",
-      current: false,
-    },
-    {
-      name: "Profile",
-      href: "/profile",
-      current: false,
     },
     {
       name: "Chatbot",
       href: "/chatbot",
-      current: false,
+    },
+    {
+      name: "Profile",
+      href: "/profile",
     },
     {
       name: "Logout",
       href: logoutUser,
-      current: false,
     },
-
-    // { name: "Inbox", href: "/dashboard/indox", current: false },
   ];
 
   function classNames(...classes) {
@@ -108,7 +102,7 @@ const SideBar = () => {
               >
                 <DisclosureButton
                   className={classNames(
-                    item.current
+                    location.pathname === item.href
                       ? "bg-gray-900 text-white"
                       : "text-gray-300 hover:bg-gray-700 hover:text-white",
                     "block rounded-md px-3 py-2 text-base font-medium"
@@ -133,9 +127,6 @@ const SideBar = () => {
               src="https://lh3.googleusercontent.com/sD8t1fg9YFeCS2dzNITeosrp3i86wHs9CuZPZQWs5M_zrmqpvc0G7LX4sXKg4EJhIPiRdgQkvpPAC8gkQw=s265-w265-h265"
               className="mx-auto h-24 w-auto z-50"
             />
-            {/* <h4 className="mt-3 text-center text-2xl/9 font-bold tracking-tight text-gray-900">
-              D'Villa
-            </h4> */}
           </div>
           <ul className="space-y-2 font-medium">
             {/* Add Product */}
@@ -158,26 +149,7 @@ const SideBar = () => {
                 </span>
               </Link>
             </li>
-            {/* Edit Product */}
-            {/* <li>
-              <Link
-                to={"/dashboard/editProduct"}
-                className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
-              >
-                <svg
-                  className="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
-                  aria-hidden="true"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="currentColor"
-                  viewBox="0 0 18 18"
-                >
-                  <path d="M6.143 0H1.857A1.857 1.857 0 0 0 0 1.857v4.286C0 7.169.831 8 1.857 8h4.286A1.857 1.857 0 0 0 8 6.143V1.857A1.857 1.857 0 0 0 6.143 0Zm10 0h-4.286A1.857 1.857 0 0 0 10 1.857v4.286C10 7.169 10.831 8 11.857 8h4.286A1.857 1.857 0 0 0 18 6.143V1.857A1.857 1.857 0 0 0 16.143 0Zm-10 10H1.857A1.857 1.857 0 0 0 0 11.857v4.286C0 17.169.831 18 1.857 18h4.286A1.857 1.857 0 0 0 8 16.143v-4.286A1.857 1.857 0 0 0 6.143 10Zm10 0h-4.286A1.857 1.857 0 0 0 10 11.857v4.286c0 1.026.831 1.857 1.857 1.857h4.286A1.857 1.857 0 0 0 18 16.143v-4.286A1.857 1.857 0 0 0 16.143 10Z" />
-                </svg>
-                <span className="flex-1 ms-3 whitespace-nowrap">
-                  Edit Product
-                </span>
-              </Link>
-            </li> */}
+
             {/* Show Product */}
             <li>
               <Link
