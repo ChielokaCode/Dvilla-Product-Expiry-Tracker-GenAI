@@ -124,11 +124,11 @@ const ShowProduct = () => {
               title="Product Category"
               width="220px"
             />
-            {/* <Column
+            <Column
               field="productDescription"
               width="220px"
               title="Product Description"
-            /> */}
+            />
             <Column
               field="productQuantity"
               filter="numeric"

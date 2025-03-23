@@ -31,6 +31,7 @@ const AIResponseAddProduct = ({ response }) => {
       productBatchNo: getValue("Batch No"),
       productManufactureDate: getValue("Mfg Date"),
       productExpirationDate: getValue("Exp Date"),
+      productShelfDate: new Date(),
       createdDate: new Date(),
       createdBy: "Admin",
       modifiedBy: null,
@@ -59,9 +60,13 @@ const AIResponseAddProduct = ({ response }) => {
     <div className="mt-4 p-3 bg-gray-100 border rounded">
       <strong>AI Response:</strong>
       <div className="whitespace-pre-line">
-        {response.split("\n").map((line, index) => (
-          <p key={index}>{line}</p>
-        ))}
+        {response
+          .replace(/###\s*(.+)/g, "\n\n**$1**") // Convert ### headings to bold on a new line
+          .replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>") // Convert **bold** to HTML <strong>
+          .split("\n")
+          .map((line, index) => (
+            <p key={index} dangerouslySetInnerHTML={{ __html: line }} />
+          ))}
       </div>
 
       {/* Add Product Button */}
