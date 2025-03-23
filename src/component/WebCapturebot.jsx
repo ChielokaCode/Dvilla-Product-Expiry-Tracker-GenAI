@@ -94,7 +94,7 @@ const WebCapturebot = () => {
   return (
     <div className="flex flex-col sm:flex-row h-screen max-w-4xl mx-auto border rounded-lg shadow-lg">
       {/* Webcam Area (Left) */}
-      <div className="flex flex-col items-center p-4 bg-white border-b sm:border-r w-full sm:w-[200px]">
+      <div className="flex flex-col items-center p-4 bg-white border-b sm:border-r w-full sm:w-[400px]">
         <Webcam
           ref={webcamRef}
           screenshotFormat="image/jpeg"
@@ -147,6 +147,7 @@ const WebCapturebot = () => {
         <div className="p-4 border-t bg-white flex items-center space-x-2">
           <Button
             onClick={capture}
+            themeColor={"primary"}
             className="bg-gray-300 text-black p-2 rounded-lg"
           >
             <SvgIcon icon={cameraIcon} size="medium" />
