@@ -62,7 +62,7 @@ const SideBar = () => {
     },
     {
       name: "Logout",
-      href: logoutUser(),
+      href: logoutUser,
       current: false,
     },
 
