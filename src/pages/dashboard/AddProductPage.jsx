@@ -7,21 +7,21 @@ const EditProductPage = () => {
   const [show, setShow] = useState(true); // Controls Slide animation
 
   return (
-    <div className="flex flex-col">
-      {/* Sidebar - Isolated from other styles */}
-      <div className="w-64 min-h-screen sm:w-0">
+    <div className="flex flex-col md:flex-row flex-1 h-screen">
+      <div className="w-full md:w-72">
         <SideBar />
       </div>
 
-      {/* Main Content Area */}
-      <AnimateButton
-        show={show}
-        setShow={setShow}
-        Animate={Expand}
-        direction="vertical"
-        text="Add"
-        Component={AddProduct}
-      />
+      <div className="w-full md:border-l border-gray-300 p-4">
+        <AnimateButton
+          show={show}
+          setShow={setShow}
+          Animate={Expand}
+          direction="vertical"
+          text="Add"
+          Component={AddProduct}
+        />
+      </div>
     </div>
   );
 };
