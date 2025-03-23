@@ -9,7 +9,7 @@ const EditProductPage = () => {
   return (
     <div className="flex flex-col">
       {/* Sidebar - Isolated from other styles */}
-      <div>
+      <div className="w-64">
         <SideBar />
       </div>
 
