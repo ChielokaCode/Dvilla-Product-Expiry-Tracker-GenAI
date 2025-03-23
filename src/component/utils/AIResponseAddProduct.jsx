@@ -27,7 +27,7 @@ const AIResponseAddProduct = ({ response }) => {
       productName: getValue("Product Name"),
       productCategory: getValue("Category"),
       productDescription: getValue("Description"),
-      productQuantity: 1, // Default quantity
+      productQuantity: getValue("Quantity"), // Default quantity
       productBatchNo: getValue("Batch No"),
       productManufactureDate: getValue("Mfg Date"),
       productExpirationDate: getValue("Exp Date"),

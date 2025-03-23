@@ -29,7 +29,12 @@ const AddProduct = () => {
     }
   }, [notifStatus]);
 
-  const productCategoryList = ["Beverages", "Food", "Drugs"];
+  const productCategoryList = [
+    "Beverages",
+    "Food",
+    "Drugs",
+    "Daily Use Essentials",
+  ];
 
   const handleAddProduct = (e) => {
     e.preventDefault();

@@ -115,7 +115,12 @@ const EditProduct = () => {
     }
   };
 
-  const productCategoryList = ["Beverages", "Food", "Drugs"];
+  const productCategoryList = [
+    "Beverages",
+    "Food",
+    "Drugs",
+    "Daily Use Essentials",
+  ];
 
   return (
     <div id="editProduct">
